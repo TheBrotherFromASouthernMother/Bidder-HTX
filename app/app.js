@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 
-
 const session = require('express-session');
 
 const bodyParser = require('body-parser');
@@ -10,10 +9,14 @@ const cookieParser = require('cookie-parser');
 
 const passport = require('passport');
 
+const passportSetUp = require('./config/passport-set-up.js');
+
+
 const handlebars = require("handlebars");
 
 
 const port = process.env.PORT || 3000;
+
 
 app.use(express.static('public'));
 app.use(session({ secret: "cats" }));
