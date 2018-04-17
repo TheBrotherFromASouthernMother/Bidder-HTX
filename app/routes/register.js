@@ -2,6 +2,9 @@ const router = require('express').Router();
 
 const bodyParser = require('body-parser');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 const promise = require('bluebird');
 
 const initOptions = {
@@ -39,20 +42,25 @@ router.post('/register', (req, res) => {
   console.log(req.body)
   let email = req.body.email;
   let password = req.body.password;
+  let hashedpwd = null;
     try {
       db.one('SELECT * FROM users WHERE username = $1', [email]).then( ()=> {
         console.log('username already exists')
       }).catch( err => {
-        console.log(err, 'goose1')
-        db.any('INSERT INTO users(id, username, password) VALUES ($1, $2, $3)', [4, email, password]).then( data => {
-         console.log(data, 'saved to database')
-       })
-      })
+        bcrypt.hash(password, saltRounds).then( (hash) => {
+          hashedpwd = hash;
+          db.any('INSERT INTO users(id, username, password) VALUES ($1, $2, $3)', [11, email, hashedpwd]).then( data => {
+           console.log(data, 'saved to database')
+         })
+        }).catch(err => {
+          console.log(err)
+        });
+
+      }) //end of insert into db if user not found
 
     } catch(err) {
       console.log(err, 'goose1')
-
-    }
+    } //end try catch
 })
 
 
