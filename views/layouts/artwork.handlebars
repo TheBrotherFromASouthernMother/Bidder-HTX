@@ -1,0 +1,33 @@
+{{> header}}
+    <div class="container main-content">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="item-title">Artwork Title</h2><p class="lot-number">Lot #</p>
+                <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/1-big-colorful-elephant-kovacs-anna-brigitta.jpg" style="max-width: 500px;">
+            </div>
+            <div class="col-md-6 lot-description">
+                <p><span class="bold-header">By:</span> Artist Name, Year</p>
+                <p><span class="bold-header">FAIR MARKET VALUE:</span> $XX</p>
+                <p><span class="bold-header">Dimensions:</span> XXX</p>
+                <p><span class="bold-header">Material:</span> XXX</p>
+                <p><span class="bold-header">Edition:</span> XXX</p>
+                <p><span class="bold-header">Details:</span> XXX</p>
+                <hr>
+                <p>To place a bid, please submit your payment information by clicking the button below.</p>
+                <form action="/payment" method="POST">
+                    <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
+                        data-amount="999"
+                        data-name="Bid On It"
+                        data-description="Widget"
+                        data-image="/images/paddle.png"
+                        data-locale="auto"
+                        data-zip-code="true"
+                        data-billing-address="true">
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+{{> footer}}

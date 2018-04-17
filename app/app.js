@@ -46,16 +46,15 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
 
 
 app.use(require("./routes/login-route.js"));
+app.use(require("./routes/register.js"))
 
 app.get('/', (req, res, next) => {
   res.send("site under construction");
 })
 
 
-app.post('/login', )
 
 
 app.listen(port, ()=> {
   console.log(`Server listening on port`)
-  console.log(handlebars)
 })
