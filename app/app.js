@@ -51,6 +51,23 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
 });
 /* end db connection */
 
+
+// socket.io server listening and broadcasting for app.js
+io.sockets.on('connection', function(socket) {
+
+  // listen to incoming bids
+  socket.on('bid', function(content) {
+    console.log('bid is: ' + content); // submitted bid is transmitted back to server
+    // echo to the sender
+    socket.emit('bid', content['amount']);
+
+    // broadcast the bid to all clients
+    socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);    
+  });
+});
+
+
+
 app.set('views', './views');
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
