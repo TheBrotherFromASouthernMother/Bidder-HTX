@@ -1,0 +1,18 @@
+{{> header}}
+    <form action="/payment-success" method="POST">
+        <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
+            data-amount="999"
+            data-name="Bid On It"
+            data-description="Widget"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+            data-zip-code="true"
+            data-billing-address="true">
+        </script>
+        <input type="text" name="price">
+        <input type="text" name="itemName">
+        <button>Submit</button>
+    </form>
+{{> footer}}

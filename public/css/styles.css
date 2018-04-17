@@ -1,0 +1,33 @@
+body {
+    font-size: 18px;
+    font-weight: 300;
+    position: relative;
+}
+
+.main-content {
+    padding: 25px;
+}
+.item-title {
+    margin-bottom: 0px;
+}
+
+.lot-number {
+    font-size: 15px;
+}
+
+.bold-header {
+    font-weight: 500;
+}
+
+.lot-description {
+    margin-top: 70px;
+}
+
+#footer {
+    background-color: #e0dfdf;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+}
