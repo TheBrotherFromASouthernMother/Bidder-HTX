@@ -18,7 +18,11 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: "cats",
                   resave: true,
-                  saveUninitialized: false
+                  saveUninitialized: false,
+                  cookie: {
+                    expires: false; //closing the browser will not log the user out
+                    maxAge: 1 * 24 * 60 * 60 * 1000; //one day
+                  }
  }));
 
 /*  connecting heroku db in node.js:
