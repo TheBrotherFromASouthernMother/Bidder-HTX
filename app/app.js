@@ -24,7 +24,7 @@ app.use(session({ secret: "cats",
     connect to process.env.DATABASE_URL when your app initializes */
 
 const { Client } = require('pg');
-const db_url = 'postgresql-round-61794';
+const db_url = 'postgres://qgauodbyzimumj:4071b5334860231f7881bb907f5fbc9e9fad3e60b9c759cd8bdac0214daf670d@ec2-54-83-204-6.compute-1.amazonaws.com:5432/d5df5c8pc330kr';
 
 const client = new Client({
   connectionString: process.env.db_url,
@@ -40,6 +40,8 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
   }
   client.end();
 });
+
+/* end db connection */
 
 
 
