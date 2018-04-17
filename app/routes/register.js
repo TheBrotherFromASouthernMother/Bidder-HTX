@@ -15,9 +15,8 @@ const initOptions = {
 const pgp = require('pg-promise')(initOptions);
 
 
-const db = pgp({
-  database: 'userbase'
-});
+const db = pgp('postgres://qgauodbyzimumj:4071b5334860231f7881bb907f5fbc9e9fad3e60b9c759cd8bdac0214daf670d@ec2-54-83-204-6.compute-1.amazonaws.com:5432/d5df5c8pc330kr');
+
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
