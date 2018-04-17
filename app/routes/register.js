@@ -44,14 +44,11 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
 
-  // let last_name = req.body.last_name;
-  // let first_name = req.body.first_name;
-  // let email = req.body.email;
-  // let password = req.body.password;
-  // let hashedpwd = null;
+  //TODO: add if-else block to check that user fields are correct;
+
   let {last_name, first_name, email, password} = req.body;
     try {
-      db.one('SELECT * FROM users WHERE username = $1', [email])
+      db.one('SELECT * FROM users WHERE email = $1', [email])
       .then( ()=> {
         console.log('username already exists');
         res.send('username already exists')
@@ -59,7 +56,9 @@ router.post('/register', (req, res) => {
         bcrypt.hash(password, saltRounds)
         .then( (hash) => {
           hashedpwd = hash;
-          db.any('INSERT INTO users(id, email, password, last_name, first_name) VALUES (DEFAULT, $1, $2, $3, $4)', [email, hashedpwd, last_name, first_name]).then( data => {console.log('saved to database'); res.send('saved')})
+          db.any('INSERT INTO users(id, email, password, last_name, first_name) VALUES (DEFAULT, $1, $2, $3, $4)', [email, hashedpwd, last_name, first_name]).then( data => {console.log('saved to database');
+          req.session.user = email;
+          res.send('saved')})
 
         }).catch(err => {
           console.log(err);
