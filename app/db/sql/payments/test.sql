@@ -1,3 +1,3 @@
-INSERT INTO payments (id, amount, payment_date, payment_time, user_id, bid_id) VALUES
-    (DEFAULT, 4500.00, date, time, 2, 2),
-    (DEFAULT, 300.00, date, time, 2, 1);
+INSERT INTO payments (id, amount, payment_timestamp, user_id, bid_id) VALUES
+    (DEFAULT, 1000.00, '2018-06-10 12:00:00', 2, 1),
+    (DEFAULT, 10000.00, '2018-08-10 12:00:00', 3, 2);
