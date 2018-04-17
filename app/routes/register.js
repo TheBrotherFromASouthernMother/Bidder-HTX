@@ -15,7 +15,10 @@ const initOptions = {
 const pgp = require('pg-promise')(initOptions);
 
 
-const db = pgp('postgres://qgauodbyzimumj:4071b5334860231f7881bb907f5fbc9e9fad3e60b9c759cd8bdac0214daf670d@ec2-54-83-204-6.compute-1.amazonaws.com:5432/d5df5c8pc330kr');
+const db = pgp({
+  connectionString: 'postgres://qgauodbyzimumj:4071b5334860231f7881bb907f5fbc9e9fad3e60b9c759cd8bdac0214daf670d@ec2-54-83-204-6.compute-1.amazonaws.com:5432/d5df5c8pc330kr',
+  ssl: true
+});
 
 
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -29,7 +32,9 @@ router.get('/register', (req, res) => {
       </head>
       <body>
         <form class="" action="/register" method="post">
-          <input type="text" name="email" value="" placeholder="username">
+          <input type="text" name="last_name" value="" placeholder="last name">
+          <input type="text" name="first_name" value="" placeholder="first name">
+          <input type="text" name="email" value="" placeholder="first name">
           <input type="password" name="password" value="" placeholder="password">
           <button type="submit" name="button"></button>
         </form>
@@ -38,21 +43,27 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  console.log(req.body)
-  let email = req.body.email;
-  let password = req.body.password;
-  let hashedpwd = null;
+
+  // let last_name = req.body.last_name;
+  // let first_name = req.body.first_name;
+  // let email = req.body.email;
+  // let password = req.body.password;
+  // let hashedpwd = null;
+  let {last_name, first_name, email, password} = req.body;
     try {
-      db.one('SELECT * FROM users WHERE username = $1', [email]).then( ()=> {
-        console.log('username already exists')
+      db.one('SELECT * FROM users WHERE username = $1', [email])
+      .then( ()=> {
+        console.log('username already exists');
+        res.send('username already exists')
       }).catch( err => {
-        bcrypt.hash(password, saltRounds).then( (hash) => {
+        bcrypt.hash(password, saltRounds)
+        .then( (hash) => {
           hashedpwd = hash;
-          db.any('INSERT INTO users(id, username, password) VALUES ($1, $2, $3)', [11, email, hashedpwd]).then( data => {
-           console.log(data, 'saved to database')
-         })
+          db.any('INSERT INTO users(id, email, password, last_name, first_name) VALUES (DEFAULT, $1, $2, $3, $4)', [email, hashedpwd, last_name, first_name]).then( data => {console.log('saved to database'); res.send('saved')})
+
         }).catch(err => {
-          console.log(err)
+          console.log(err);
+          res.send(err)
         });
 
       }) //end of insert into db if user not found
