@@ -7,22 +7,19 @@ const bodyParser = require('body-parser');
 
 const cookieParser = require('cookie-parser');
 
-const passport = require('passport');
-
-const passportSetUp = require('./config/passport-set-up.js');
-
-
 const handlebars = require("handlebars");
-
 
 const port = process.env.PORT || 3000;
 
 
 app.use(express.static('public'));
-app.use(session({ secret: "cats" }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({ secret: "cats",
+                  resave: true,
+                  saveUninitialized: false
+ }));
+
+
 
 app.use(require("./routes/login-route.js"));
 
@@ -31,12 +28,10 @@ app.get('/', (req, res, next) => {
 })
 
 
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login'
-}))
+app.post('/login', )
 
 
 app.listen(port, ()=> {
   console.log(`Server listening on port`)
+  console.log(handlebars)
 })
