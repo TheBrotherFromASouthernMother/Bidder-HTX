@@ -11,6 +11,13 @@ const handlebars = require("handlebars");
 
 const exphbs = require('express-handlebars');
 
+// socket.io requires
+const path = require('path');
+const http = require('http');
+const server = http.createServer(app);
+const io = require('socket.io').listen(server);
+server.listen(8000);
+// end socket.io requires
 
 const port = process.env.PORT || 3000;
 
@@ -47,6 +54,23 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
   client.end();
 });
 /* end db connection */
+
+
+// socket.io server listening and broadcasting for app.js
+io.sockets.on('connection', function(socket) {
+
+  // listen to incoming bids
+  socket.on('bid', function(content) {
+    console.log('bid is: ' + content); // submitted bid is transmitted back to server
+    // echo to the sender
+    socket.emit('bid', content['amount']);
+
+    // broadcast the bid to all clients
+    socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);    
+  });
+});
+
+
 
 app.set('views', './views');
 app.engine('handlebars', exphbs());
