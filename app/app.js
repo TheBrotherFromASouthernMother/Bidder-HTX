@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const handlebars = require("handlebars");
+handlebars.registerHelper("add", function(num1, num2) {               
+  return num1 + num2;
+});
 
 const exphbs = require('express-handlebars');
 
@@ -27,8 +30,8 @@ app.use(session({ secret: "cats",
                   resave: true,
                   saveUninitialized: false,
                   cookie: {
-                    expires: false; //closing the browser will not log the user out
-                    maxAge: 1 * 24 * 60 * 60 * 1000; //one day
+                    expires: false, //closing the browser will not log the user out
+                    maxAge: 1 * 24 * 60 * 60 * 1000 //one day
                   }
  }));
 
