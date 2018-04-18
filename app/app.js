@@ -19,8 +19,8 @@ const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
 
-const io = require('socket.io').listen(server);
-server.listen(8000);
+// const io = require('socket.io').listen(server);
+// server.listen(8000);
 // end socket.io requires
 
 const port = process.env.PORT || 3000;

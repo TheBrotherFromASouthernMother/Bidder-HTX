@@ -32,9 +32,15 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   let {last_name, first_name, email, password} = req.body;
+  let hashedpwd = null;
+  let activationHash = null;
   if(!verifyLogin(res, last_name, first_name, email, password)) {
     return;
-  };
+  } else {
+    bcrypt.hash(email, saltRounds).then( hash => {
+      activationHash = hash;
+    })
+  }
     try {
       //check if user has already been saved to database to prevent duplicate registrations
       db.one('SELECT * FROM users WHERE email = $1', [email])
@@ -47,9 +53,8 @@ router.post('/register', (req, res) => {
         bcrypt.hash(password, saltRounds)
         .then( (hash) => {
           hashedpwd = hash;
-          //TODO: after hashing the pass word, also hash the email and store it has the value for verification string
-          
-          db.any('INSERT INTO users(id, email, password, last_name, first_name) VALUES (DEFAULT, $1, $2, $3, $4)', [email, hashedpwd, last_name, first_name])
+          //TODO: after hashing the password, also hash the email and store it as the value for verification string
+          db.any('INSERT INTO users(id, email, password, last_name, first_name, activation_hash) VALUES (DEFAULT, $1, $2, $3, $4, $5)', [email, hashedpwd, last_name, first_name, activationHash])
 
           //log the user by storing their id in the session
           .then( data => {console.log('saved to database');
