@@ -49,11 +49,12 @@ router.post('/login', (req, res) => {
   let {email, password} = req.body;
   console.log(email, password);
   db.one('SELECT * FROM users WHERE email = $1', [email]).then( data => {
-    bcrypt.compare(password, data.password).then(function(res) {
+    bcrypt.compare(password, data.password).then(function(result) {
       // res == true
-      console.log("Password match:", typeof res);
-      if (res === true) {
+      console.log("Password match:", result);
+      if (result === true) {
       req.session.user = data.email;
+      res.redirect('/');
       } else {
         res.send('Incorrect password')
       }

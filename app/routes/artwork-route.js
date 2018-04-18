@@ -13,7 +13,9 @@ const initOptions = {
     ssl: true
   });
 
-router.get('/artwork', (req,res) => {
+const authenticateUser = require('./authenticateUser.js').authenticateUser;
+
+router.get('/artwork', authenticateUser, (req,res) => {
     db.any('WITH high_bids AS (SELECT MAX(bid_amount), lot_id FROM bids GROUP BY lot_id) SELECT * FROM high_bids INNER JOIN lots ON lot_id = lots.id INNER JOIN artworks ON artworks.id = artwork_id WHERE auction_id = 1;').then(function(data) {
         res.render('layouts/artwork', {
             'artworks': data

@@ -15,8 +15,8 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
-const io = require('socket.io').listen(server);
-server.listen(8000);
+// const io = require('socket.io').listen(server);
+// server.listen(8000);
 // end socket.io requires
 
 const port = process.env.PORT || 3000;
@@ -56,19 +56,19 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
 /* end db connection */
 
 
-// socket.io server listening and broadcasting for app.js
-io.sockets.on('connection', function(socket) {
-
-  // listen to incoming bids
-  socket.on('bid', function(content) {
-    console.log('bid is: ' + content); // submitted bid is transmitted back to server
-    // echo to the sender
-    socket.emit('bid', content['amount']);
-
-    // broadcast the bid to all clients
-    socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
-  });
-});
+// // socket.io server listening and broadcasting for app.js
+// io.sockets.on('connection', function(socket) {
+//
+//   // listen to incoming bids
+//   socket.on('bid', function(content) {
+//     console.log('bid is: ' + content); // submitted bid is transmitted back to server
+//     // echo to the sender
+//     socket.emit('bid', content['amount']);
+//
+//     // broadcast the bid to all clients
+//     socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
+//   });
+// });
 
 
 
@@ -78,7 +78,7 @@ app.set('view engine', 'handlebars');
 
 app.use(require("./routes/login-route.js"));
 // app.use(require("./routes/register.js"));
-app.use(require("./routes/payment-route.js"));
+// app.use(require("./routes/payment-route.js"));
 app.use(require("./routes/artwork-route.js"));
 
 app.get('/', (req, res, next) => {
