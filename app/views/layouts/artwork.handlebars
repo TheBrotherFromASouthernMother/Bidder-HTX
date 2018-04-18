@@ -4,13 +4,13 @@
             {{#each artworks}}
                 <div class="col-12 col-lg-6 lot-description">
                     <h2 class="item-title">{{this.title}}</h2><p class="lot-number">Lot {{this.lot_number}}</p>
-                    <img src="{{this.images}}" class="item-img">
+                    <img src="{{this.images.[0]}}" class="item-img">
                     <p><span class="bold-header">By:</span> {{this.artist}}, {{this.year}}</p>
                     <p><span class="bold-header">FAIR MARKET VALUE:</span> ${{this.fmv}}</p>
                     <p><span class="bold-header">Dimensions:</span> {{this.dimensions}}</p>
                     <p><span class="bold-header">Materials:</span> {{this.materials}}</p>
                     <p><span class="bold-header">Edition:</span> {{this.edition}}</p>
-                    <p><span class="bold-header">Details:</span> {{this.detail_desc}}</p>
+                    <p><span class="bold-header">Details:</span> {{{this.detail_desc}}}</p>
                     <hr>
                     <p>To place a bid, please submit your payment information by clicking the button below.</p>
                     <form class="bidForm" action="">

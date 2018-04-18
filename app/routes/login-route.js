@@ -5,20 +5,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-const promise = require('bluebird');
-
-const initOptions = {
-  // Initialization Options
-  promiseLib: promise
-};
-
-const pgp = require('pg-promise')(initOptions);
-
-
-const db = pgp({
-  connectionString: 'postgres://qgauodbyzimumj:4071b5334860231f7881bb907f5fbc9e9fad3e60b9c759cd8bdac0214daf670d@ec2-54-83-204-6.compute-1.amazonaws.com:5432/d5df5c8pc330kr',
-  ssl: true
-});
+const db = require("../app.js").db;
 
 
 router.use(bodyParser.urlencoded({ extended: false }));
