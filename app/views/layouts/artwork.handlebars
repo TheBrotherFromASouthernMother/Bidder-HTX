@@ -1,25 +1,55 @@
 {{> header}}
     <div class="container main-content">
         <div class="row">
-            <div class="col-md-6">
+            {{#each artworks}}
+                <div class="col-12 col-lg-6 lot-description">
+                    <h2 class="item-title">{{this.title}}</h2><p class="lot-number">Lot {{this.lot_number}}</p>
+                    <img src="{{this.images}}" class="item-img">
+                    <p><span class="bold-header">By:</span> {{this.artist}}, {{this.year}}</p>
+                    <p><span class="bold-header">FAIR MARKET VALUE:</span> ${{this.fmv}}</p>
+                    <p><span class="bold-header">Dimensions:</span> {{this.dimensions}}</p>
+                    <p><span class="bold-header">Materials:</span> {{this.materials}}</p>
+                    <p><span class="bold-header">Edition:</span> {{this.edition}}</p>
+                    <p><span class="bold-header">Details:</span> {{this.detail_desc}}</p>
+                    <hr>
+                    <p>To place a bid, please submit your payment information by clicking the button below.</p>
+                    <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="{{this.max}}" step="{{this.bid_increments}}" value="{{this.max}}">
+                    <form action="/payment" method="POST">
+                        <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
+                            data-amount="999"
+                            data-name="Bidder"
+                            data-description="Widget"
+                            data-image="/images/paddle.png"
+                            data-locale="auto"
+                            data-zip-code="true"
+                            data-billing-address="true">
+                        </script>
+                    </form>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+        {{!-- <div class="row">
+            <div class="col-12 col-lg-6 lot-description">
                 <h2 class="item-title">Artwork Title</h2><p class="lot-number">Lot #</p>
-                <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/1-big-colorful-elephant-kovacs-anna-brigitta.jpg" style="max-width: 500px;">
-            </div>
-            <div class="col-md-6 lot-description">
+                <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/1-big-colorful-elephant-kovacs-anna-brigitta.jpg" class="item-img">
                 <p><span class="bold-header">By:</span> Artist Name, Year</p>
                 <p><span class="bold-header">FAIR MARKET VALUE:</span> $XX</p>
                 <p><span class="bold-header">Dimensions:</span> XXX</p>
                 <p><span class="bold-header">Material:</span> XXX</p>
                 <p><span class="bold-header">Edition:</span> XXX</p>
-                <p><span class="bold-header">Details:</span> XXX</p>
+                <p><span class="bold-header">Details:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci eu lobortis elementum nibh. Pharetra massa massa ultricies mi quis hendrerit dolor magna eget. Purus gravida quis blandit turpis cursus in hac habitasse. Senectus et netus et malesuada fames ac turpis. Tortor aliquam nulla facilisi cras fermentum.</p>
                 <hr>
                 <p>To place a bid, please submit your payment information by clicking the button below.</p>
+                <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="1" step="20" value="300">
                 <form action="/payment" method="POST">
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
                         data-amount="999"
-                        data-name="Bid On It"
+                        data-name="Bidder"
                         data-description="Widget"
                         data-image="/images/paddle.png"
                         data-locale="auto"
@@ -28,6 +58,52 @@
                     </script>
                 </form>
             </div>
+            <div class="col-12 col-lg-6 lot-description">
+                <h2 class="item-title">Artwork Title</h2><p class="lot-number">Lot #</p>
+                <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1820x1280:format=jpg/path/s177e625e77f51f75/image/if07f0db16008748f/version/1521097458/image.jpg" class="item-img">
+                <p><span class="bold-header">By:</span> Artist Name, Year</p>
+                <p><span class="bold-header">FAIR MARKET VALUE:</span> $XX</p>
+                <p><span class="bold-header">Dimensions:</span> XXX</p>
+                <p><span class="bold-header">Material:</span> XXX</p>
+                <p><span class="bold-header">Edition:</span> XXX</p>
+                <p><span class="bold-header">Details:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci eu lobortis elementum nibh. Pharetra massa massa ultricies mi quis hendrerit dolor magna eget. Purus gravida quis blandit turpis cursus in hac habitasse. Senectus et netus et malesuada fames ac turpis. Tortor aliquam nulla facilisi cras fermentum. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse sed.</p>
+                <hr>
+                <p>To place a bid, please submit your payment information by clicking the button below.</p>
+                <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="1" step="20" value="300">
+                <!--socket.io bids -->
+                <form class="bidForm" action="">
+                    <input id="bid" autocomplete="off"></input><button>Submit Bid</button>
+                </form>
+
+                <form action="/payment" method="POST">
+                    <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
+                        data-amount="999"
+                        data-name="Bidder"
+                        data-description="Widget"
+                        data-image="/images/paddle.png"
+                        data-locale="auto"
+                        data-zip-code="true"
+                        data-billing-address="true">
+                    </script>
+                </form>
+
+                <!-- socket.io submit bids function -->
+                <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+                <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+                <script>
+                    $(function () {
+                        var socket = io.connect('http://localhost:8000');
+                        $('.bidForm').submit(function() {
+                            socket.emit('bid', $('#bid').val());
+                            $('#bid').val();
+                            console.log($('#bid').val());
+                            return false; 
+                        });
+                    });
+                </script>
+            </div>
         </div>
-    </div>
+    </div> --}}
 {{> footer}}
