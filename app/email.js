@@ -6,9 +6,10 @@ const pass = 'DigitalCrafts713#';
 
 const fs = require('fs');
 
+let welcomeMessage = fs.readFileSync('./views/registrationTemplate.html')
 
 module.exports.sendMail = (msg, targetAddress) => {
-  fs.readFileSync('./')
+
   let transporter = nodemailer.createTransport({
           service: 'gmail',
           port: 587,
@@ -21,4 +22,12 @@ module.exports.sendMail = (msg, targetAddress) => {
             rejectUnauthorized: false
           }
       });
+
+  let mailOptions = {
+    from: 'christian.lowe17@yahoo.com', // sender address
+    to: 'christglowe@gmail.com', // list of receivers
+    subject: 'Welcome to Biddr' // Subject line
+    text: msg, // plain text body
+    html: msg // html body
+    };
 }
