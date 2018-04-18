@@ -1,11 +1,5 @@
-var bidButtons = $(".bid-on-it");
-
-bidButtons.forEach( element => {
-    element.submit( (event) => {
-        console.log("You clicked my button");
-        console.log($(this).attr("artwork-id"));
-        $.post("/lot", {
-            artworkId: $(this).attr("artwork-id")
-        });
-    });
+$(".bid-on-it").click( function() {
+    let artworkId = $(this).attr("artwork-id");
+    // console.log("/lot/" + artworkId);
+    window.location.href = "/lot/" + artworkId;
 });

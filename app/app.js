@@ -79,6 +79,7 @@ app.use(require("./routes/register.js"));
 app.use(require("./routes/payment-route.js"));
 app.use(require("./routes/artwork-route.js"));
 app.use(require('./routes/logout-route.js'));
+app.use(require('./routes/lot-route.js'));
 
 app.get('/', (req, res, next) => {
   res.send("site under construction");

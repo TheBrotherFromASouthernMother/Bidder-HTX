@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 const db = require("../app.js").db;
 
-const sendMail = require('../email.js').sendMail;
+// const sendMail = require('../email.js').sendMail;
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
