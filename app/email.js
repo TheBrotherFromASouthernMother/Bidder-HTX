@@ -6,17 +6,17 @@ const pass = 'DigitalCrafts713#';
 
 const fs = require('fs');
 
-let welcomeMessage = fs.readFileSync('./views/registrationTemplate.html')
+let welcomeMessage = fs.readFileSync('./views/registrationTemplate.html').toString();
 
-module.exports.sendMail = (msg, targetAddress) => {
+module.exports.sendMail = (targetAddress) => {
 
   let transporter = nodemailer.createTransport({
           service: 'gmail',
           port: 587,
           secure: false, // true for 465, false for other ports
           auth: {
-              user: email, // generated ethereal user
-              pass: pass // generated ethereal password
+              user: email,
+              pass: pass
           },
           tls: {
             rejectUnauthorized: false
@@ -24,10 +24,19 @@ module.exports.sendMail = (msg, targetAddress) => {
       });
 
   let mailOptions = {
-    from: 'christian.lowe17@yahoo.com', // sender address
-    to: 'christglowe@gmail.com', // list of receivers
-    subject: 'Welcome to Biddr' // Subject line
-    text: msg, // plain text body
-    html: msg // html body
+    from: 'bidder.houston@gmail.com', // sender address
+    to: targetAddress, // list of receivers
+    subject: 'Welcome to Biddr', // Subject line
+    text: "", // plain text body
+    html: welcomeMessage // html body
     };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+
+        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+    });
 }

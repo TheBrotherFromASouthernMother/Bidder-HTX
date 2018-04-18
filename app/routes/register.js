@@ -7,6 +7,8 @@ const saltRounds = 10;
 
 const db = require("../app.js").db;
 
+const sendMail = require('../email.js').sendMail;
+
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/register', (req, res) => {
@@ -47,6 +49,7 @@ router.post('/register', (req, res) => {
           hashedpwd = hash;
           db.any('INSERT INTO users(id, email, password, last_name, first_name) VALUES (DEFAULT, $1, $2, $3, $4)', [email, hashedpwd, last_name, first_name]).then( data => {console.log('saved to database');
           req.session.user = email;
+          sendMail(email);
           res.send('saved')})
 
         }).catch(err => {
