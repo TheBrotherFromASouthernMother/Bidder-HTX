@@ -20,7 +20,7 @@ router.get('/register', (req, res) => {
         <form class="" action="/register" method="post">
           <input type="text" name="last_name" value="" placeholder="last name">
           <input type="text" name="first_name" value="" placeholder="first name">
-          <input type="text" name="email" value="" placeholder="first name">
+          <input type="text" name="email" value="" placeholder="email">
           <input type="password" name="password" value="" placeholder="password">
           <button type="submit" name="button"></button>
         </form>
