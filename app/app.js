@@ -27,8 +27,8 @@ app.use(session({ secret: "cats",
                   resave: true,
                   saveUninitialized: false,
                   cookie: {
-                    expires: false; //closing the browser will not log the user out
-                    maxAge: 1 * 24 * 60 * 60 * 1000; //one day
+                    expires: false, //closing the browser will not log the user out
+                    maxAge: 1 * 24 * 60 * 60 * 1000 //one day
                   }
  }));
 
@@ -66,7 +66,7 @@ io.sockets.on('connection', function(socket) {
     socket.emit('bid', content['amount']);
 
     // broadcast the bid to all clients
-    socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);    
+    socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
   });
 });
 

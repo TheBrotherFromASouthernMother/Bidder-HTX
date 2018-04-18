@@ -43,15 +43,24 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
+  if (req.session.user) {
+    res.redirect('/');
+  }
   let {email, password} = req.body;
   console.log(email, password);
-  db.one('SELECT * FROM users WHERE email = $1 AND id = 5', [email]).then( data => {
+  db.one('SELECT * FROM users WHERE email = $1', [email]).then( data => {
     bcrypt.compare(password, data.password).then(function(res) {
-    // res == true
-    console.log("Password match:", res);
+      // res == true
+      console.log("Password match:", typeof res);
+      if (res === true) {
+      req.session.user = data.email;
+      } else {
+        res.send('Incorrect password')
+      }
     });
   }).catch( err => {
     console.log('Oh no there is an error', err)
+    res.send(`Oh no there is an error ${err}`)
   })
 })
 
