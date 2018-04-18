@@ -1,6 +1,8 @@
 var router = require('express').Router();
 
-router.get('/payment', (req,res) => {
+const authenticateUser = require('./authenticateUser.js').authenticateUser;
+
+router.get('/payment', authenticateUser, (req,res) => {
     res.render('layouts/payment')
 });
 
