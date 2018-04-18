@@ -10,7 +10,7 @@
                     <p><span class="bold-header">Dimensions:</span> {{this.dimensions}}</p>
                     <p><span class="bold-header">Materials:</span> {{this.materials}}</p>
                     <p><span class="bold-header">Edition:</span> {{this.edition}}</p>
-                    <p><span class="bold-header">Details:</span> {{{this.detail_desc}}}</p>
+                    <!-- <p><span class="bold-header">Details:</span> {{{this.detail_desc}}}</p>
                     <hr>
                     <p>To place a bid, please submit your payment information by clicking the button below.</p>
                     <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="{{add this.max this.bid_increments}}">
@@ -27,7 +27,10 @@
                             data-zip-code="true"
                             data-billing-address="true">
                         </script>
-                    </form>
+                    </form> -->
+
+                    <button class="bid-on-it" artwork-id="{{this.artworks.id}}">Bid On It</button>
+
                 </div>
             {{/each}}
         </div>
@@ -107,4 +110,7 @@
             </div>
         </div>
     </div> --}}
+
+<script type="text/javascript" src="js/bid-nav.js"></script>
+
 {{> footer}}
