@@ -33,6 +33,9 @@ router.post('/register', (req, res) => {
   //TODO: add if-else block to check that user fields are correct;
 
   let {last_name, first_name, email, password} = req.body;
+    if(!verifyLogin(res, last_name, first_name, email, password)) {
+      return;
+    };
     try {
       db.one('SELECT * FROM users WHERE email = $1', [email])
       .then( ()=> {
@@ -60,3 +63,26 @@ router.post('/register', (req, res) => {
 
 
 module.exports = router;
+
+
+function testEmail(email) {
+
+let validator = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+return validator.test(email);
+}
+
+
+function verifyLogin (response, lastName, firstName, email, password,) {
+  if (lastName.length <= 0) {
+    response.send('Please enter a last name');
+    return false;
+  } else if (firstName.length <= 0) {
+    response.send('Please enter a first name');
+  } else if (!testEmail(email)) {
+    response.send('Please enter a valid email');
+  } else if (password.length <= 5) {
+    response.send('Please enter a password with six or more characters');
+  } else {
+    return true;
+  }
+}

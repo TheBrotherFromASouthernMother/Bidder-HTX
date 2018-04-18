@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const handlebars = require("handlebars");
-handlebars.registerHelper("add", function(num1, num2) {               
+handlebars.registerHelper("add", function(num1, num2) {
   return num1 + num2;
 });
 
@@ -18,9 +18,9 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
-const io = require('socket.io').listen(server);
-server.listen(8000);
-end socket.io requires
+// const io = require('socket.io').listen(server);
+// server.listen(8000);
+// end socket.io requires
 
 const port = process.env.PORT || 3000;
 
@@ -54,18 +54,18 @@ const db = pgp({
 module.exports.db = db;
 
 // socket.io server listening and broadcasting for app.js
-io.sockets.on('connection', function(socket) {
-
-  // listen to incoming bids
-  socket.on('bid', function(content) {
-    console.log('bid is: ' + content); // submitted bid is transmitted back to server
-    // echo to the sender
-    socket.emit('bid', content['amount']);
-
-    // broadcast the bid to all clients
-    socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
-  });
-});
+// io.sockets.on('connection', function(socket) {
+//
+//   // listen to incoming bids
+//   socket.on('bid', function(content) {
+//     console.log('bid is: ' + content); // submitted bid is transmitted back to server
+//     // echo to the sender
+//     socket.emit('bid', content['amount']);
+//
+//     // broadcast the bid to all clients
+//     socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
+//   });
+// });
 
 
 
