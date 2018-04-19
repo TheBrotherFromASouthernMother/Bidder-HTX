@@ -12,7 +12,6 @@ const db = require("../app.js").db;
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/register', (req, res) => {
-<<<<<<< HEAD
   res.render('layouts/register')
   // res.send(`  <!DOCTYPE html>
   //   <html>
@@ -30,24 +29,6 @@ router.get('/register', (req, res) => {
   //       </form>
   //     </body>
   //   </html>`)
-=======
-  res.send(`  <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title></title>
-      </head>
-      <body>
-        <form class="" action="/register" method="post">
-          <input type="text" name="last_name" value="" placeholder="last name">
-          <input type="text" name="first_name" value="" placeholder="first name">
-          <input type="text" name="email" value="" placeholder="email">
-          <input type="password" name="password" value="" placeholder="password">
-          <button type="submit" name="button"></button>
-        </form>
-      </body>
-    </html>`)
->>>>>>> refs/remotes/origin/master
 })
 
 router.post('/register', (req, res) => {
