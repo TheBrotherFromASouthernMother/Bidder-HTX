@@ -23,3 +23,7 @@ UPDATE auctions
 SET auction_name = 'Modern and Contemporary Finds',
     auction_desc = 'Artworks from the 20th century and beyond, including abstraction. These works transcend the restrictions of our natural world.'
 WHERE id = 2;
+
+
+INSERT INTO auctions (id, auction_name, auction_desc, start_timestamp, end_timestamp) VALUES
+    (DEFAULT, 'Works on Paper', 'Prints, books, drawings, photographs, and other ephemera.', '2018-02-10 12:00:00+00', '2018-08-01 12:00:00+00');
