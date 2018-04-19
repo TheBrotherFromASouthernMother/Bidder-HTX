@@ -54,19 +54,6 @@ const db = pgp({
 
 module.exports.db = db;
 
-// // socket.io server listening and broadcasting for app.js
-// io.on('connection', function(socket) {
-
-//   // listen to incoming bids
-//   socket.on('bid', function(content) {
-//     console.log('bid is: ' + content); // submitted bid is transmitted back to server
-//     // echo to the sender
-//     socket.emit('bid', content['amount']);
-
-//     // broadcast the bid to all clients
-//     socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
-//   });
-// });
 
 // socket.io server
 var clients = 0;
