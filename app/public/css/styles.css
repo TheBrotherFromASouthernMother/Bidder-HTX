@@ -7,6 +7,12 @@ nav {
     border-bottom: 1px solid #e0dfdf;
 }
 
+.navbar-light .navbar-text {
+    color: black;
+    position: absolute;
+    right: 25px;
+}
+
 .main-content {
     padding: 30px 10px;
 }
