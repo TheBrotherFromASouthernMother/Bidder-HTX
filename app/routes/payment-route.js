@@ -5,7 +5,7 @@ router.use(bodyParser.urlencoded({extended :false}))
 
 const db = require("../app.js").db;
 
-const authenticateUser = require('./authenticateUser.js').authenticateUser;
+const authenticateUser = require('../public/js/authenticateUser.js').authenticateUser;
 
 router.get('/payment', function(req,res) {
     res.render('layouts/payment')

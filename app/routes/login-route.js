@@ -7,7 +7,6 @@ const saltRounds = 10;
 
 const db = require("../app.js").db;
 
-
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/login', (req, res) => {
@@ -35,6 +34,7 @@ router.post('/login', (req, res) => {
     res.redirect('/artwork');
   }
   let {email, password} = req.body;
+
   console.log(email, password);
   db.one('SELECT * FROM users WHERE email = $1', [email]).then( data => {
     bcrypt.compare(password, data.password).then(function(result) {

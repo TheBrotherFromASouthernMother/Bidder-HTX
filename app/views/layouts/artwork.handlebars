@@ -10,7 +10,7 @@
                     <p><span class="bold-header">Dimensions:</span> {{this.dimensions}}</p>
                     <p><span class="bold-header">Materials:</span> {{this.materials}}</p>
                     <p><span class="bold-header">Edition:</span> {{this.edition}}</p>
-                    <p><span class="bold-header">Details:</span> {{{this.detail_desc}}}</p>
+                    <!-- <p><span class="bold-header">Details:</span> {{{this.detail_desc}}}</p>
                     <hr>
                     <p>To place a bid, please submit your bid amount below. The next minimum bid that can be submitted is currently displayed.</p>
                     <form action="/payment" method="GET">
@@ -28,7 +28,14 @@
                             data-zip-code="true"
                             data-billing-address="true">
                         </script>
+<<<<<<< HEAD
                     </form> --}}
+=======
+                    </form> -->
+
+                    <button class="bid-on-it" artwork-id="{{this.artwork_id}}">Bid On It</button>
+
+>>>>>>> refs/remotes/origin/master
                 </div>
             {{/each}}
         </div>
@@ -108,4 +115,8 @@
             </div>
         </div>
     </div> --}}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/bid-nav.js"></script>
+
 {{> footer}}

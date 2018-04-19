@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const handlebars = require("handlebars");
-handlebars.registerHelper("add", function(num1, num2) {               
+handlebars.registerHelper("add", function(num1, num2) {
   return num1 + num2;
 });
 
@@ -18,13 +18,14 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
+
 const io = require('socket.io').listen(server);
 server.listen(8000);
 // end socket.io requires
 
 const port = process.env.PORT || 3000;
 
-app.use(express.static('public'));
+app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: "cats",
                   resave: true,
@@ -54,18 +55,18 @@ const db = pgp({
 module.exports.db = db;
 
 // socket.io server listening and broadcasting for app.js
-io.sockets.on('connection', function(socket) {
-
-  // listen to incoming bids
-  socket.on('bid', function(content) {
-    console.log('bid is: ' + content); // submitted bid is transmitted back to server
-    // echo to the sender
-    socket.emit('bid', content['amount']);
-
-    // broadcast the bid to all clients
-    socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
-  });
-});
+// io.sockets.on('connection', function(socket) {
+//
+//   // listen to incoming bids
+//   socket.on('bid', function(content) {
+//     console.log('bid is: ' + content); // submitted bid is transmitted back to server
+//     // echo to the sender
+//     socket.emit('bid', content['amount']);
+//
+//     // broadcast the bid to all clients
+//     socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
+//   });
+// });
 
 
 
@@ -78,6 +79,7 @@ app.use(require("./routes/register.js"));
 app.use(require("./routes/payment-route.js"));
 app.use(require("./routes/artwork-route.js"));
 app.use(require('./routes/logout-route.js'));
+app.use(require('./routes/lot-route.js'));
 
 app.get('/', (req, res, next) => {
   res.send("site under construction");
