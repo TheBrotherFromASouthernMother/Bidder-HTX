@@ -10,26 +10,6 @@
                     <p><span class="bold-header">Dimensions:</span> {{this.dimensions}}</p>
                     <p><span class="bold-header">Materials:</span> {{this.materials}}</p>
                     <p><span class="bold-header">Edition:</span> {{this.edition}}</p>
-                    <!-- <p><span class="bold-header">Details:</span> {{{this.detail_desc}}}</p>
-                    <hr>
-                    <p>To place a bid, please submit your bid amount below. The next minimum bid that can be submitted is currently displayed.</p>
-                    <form action="/payment" method="GET">
-                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" name="bidAmount" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="" placeholder="{{add this.max this.bid_increments}}"><button type="submit">Submit Bid</button>
-                    </form>
-                    <form action="/payment-success" method="POST">
-                        <script
-                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
-                            data-amount="999"
-                            data-name="Bidder"
-                            data-description="Widget"
-                            data-image="/images/paddle.png"
-                            data-locale="auto"
-                            data-zip-code="true"
-                            data-billing-address="true">
-                        </script>
-                    </form> -->
-
                     <button class="bid-on-it" artwork-id="{{this.artwork_id}}">Bid On It</button>
 
                 </div>
