@@ -7,15 +7,16 @@ const saltRounds = 10;
 
 const db = require("../app.js").db;
 
-// const sendMail = require('../email.js').sendMail;
+const sendMail = require('../public/js/email.js').sendMail;
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/register', (req, res) => {
   if (req.session.user) {
-    res.redirect('/');
+    res.redirect('/artwork');
+  } else {
+    res.render('layouts/register');
   }
-  res.render('layouts/register')
 })
 
 router.post('/register', (req, res) => {
