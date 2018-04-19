@@ -75,7 +75,7 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
 app.use(require("./routes/login-route.js"));
-app.use(require("./routes/register.js"));
+app.use(require("./routes/register-route.js"));
 app.use(require("./routes/payment-route.js"));
 app.use(require("./routes/artwork-route.js"));
 app.use(require('./routes/logout-route.js'));
