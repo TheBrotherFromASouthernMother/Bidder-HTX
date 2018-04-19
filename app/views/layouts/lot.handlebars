@@ -3,7 +3,7 @@
         <div class="row">
             {{#with artwork}}
                 <div class="col-12 col-lg-6 lot-description">
-                    <h2 class="item-title">{{title}}</h2><p class="lot-number">Lot {{lot_number}}</p>
+                    <h2 class="item-title">{{title}}</h2><p class="lot-number" lot-number="{{lot_number}}">Lot {{lot_number}}</p>
                     <img src="{{images.[0]}}" class="item-img">
                     <p><span class="bold-header">By:</span> {{artist}}, {{year}}</p>
                     <p><span class="bold-header">FAIR MARKET VALUE:</span> ${{fmv}}</p>
@@ -13,8 +13,10 @@
                     <p><span class="bold-header">Details:</span> {{{detail_desc}}}</p>
                     <hr>
                     <p>To place a bid, please submit your payment information by clicking the button below.</p>
-                    <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="{{add this.max this.bid_increments}}">
-                    
+                    <form class="bid-form">
+                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="{{add this.max this.bid_increments}}">
+                        <button class="submit-bid">Submit Bid</button>
+                    </form>
                     <form action="/payment" method="POST">
                         <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -32,5 +34,8 @@
             {{/with}}
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/socketIOBid.js"></script>
 {{> footer}}

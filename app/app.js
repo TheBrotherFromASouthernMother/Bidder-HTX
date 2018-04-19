@@ -54,20 +54,50 @@ const db = pgp({
 
 module.exports.db = db;
 
-// socket.io server listening and broadcasting for app.js
-// io.sockets.on('connection', function(socket) {
-//
+// // socket.io server listening and broadcasting for app.js
+// io.on('connection', function(socket) {
+
 //   // listen to incoming bids
 //   socket.on('bid', function(content) {
 //     console.log('bid is: ' + content); // submitted bid is transmitted back to server
 //     // echo to the sender
 //     socket.emit('bid', content['amount']);
-//
+
 //     // broadcast the bid to all clients
 //     socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
 //   });
 // });
 
+// socket.io server
+var clients = 0;
+// when some client connects, this executes:
+var socketServer = io.on('connection', function(socket) {
+  clients++;
+  console.log('A client has connected. ' + clients + ' now connected.');
+
+  // listen to incoming bids
+  var incomingBid = socket.on('bid', function(bidEvent) {
+    console.log('Incoming bid: ' + bidEvent.bidAmount + ' from ' + bidEvent.email + ' for lot ' + bidEvent.lotNumber); // submitted bid is transmitted back to server; use content to parse for bidValue, email, lotId to update db (pass to another route js???)
+    var bidData = bidEvent;
+    return bidData; //
+
+    // // echo to the sender: is this necessary?
+    // socket.emit('bid', content['amount']);
+
+    // // broadcast the bid to all clients: is this necessary? Just need to pass data to js file to send to db, yeah?
+    // socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
+
+
+  //when some client disconnects, this executes:
+    socket.on('disconnect', function() {
+      clients--;
+      console.log('A client has disconnected. ' + clients + ' still connected.');
+    });
+  });
+});
+var sendBidDataToServer = socketServer;
+// console.log(sendBidDataToServer);
+module.exports.sendBidDataToServer = sendBidDataToServer;
 
 
 app.set('views', './views');

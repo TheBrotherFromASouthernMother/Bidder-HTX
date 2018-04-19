@@ -95,24 +95,10 @@
                 </form> -->
 
                 <!-- socket.io submit bids function -->
-                <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-                <script src="http://localhost:8000/socket.io/socket.io.js"></script>
-                <script>
-                    $(function () {
-                        var socket = io.connect('http://localhost:8000');
-                        $('.bidForm').submit(function() {
-                            socket.emit('bid', $('#bid').val());
-                            $('#bid').val();
-                            console.log($('#bid').val());
-                            return false; 
-                        });
-                    });
-                </script>
-            </div>
+
         </div>
     </div>
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-<script type="text/javascript" src="js/bid-nav.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/bid-nav.js"></script>
 
 {{> footer}}
