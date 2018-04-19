@@ -14,9 +14,11 @@ router.get('/lot/:whatever', authenticateUser, (req,res) => {
     let queryString = 'WITH high_bids AS (SELECT MAX(bid_amount), lot_id FROM bids GROUP BY lot_id) SELECT * FROM high_bids INNER JOIN lots ON lot_id = lots.id INNER JOIN artworks ON artworks.id = artwork_id WHERE artwork_id = ';
     queryString = queryString.concat(whateverId).concat(";");
 
+
     db.any(queryString).then(function(data) {
+
         res.render('layouts/lot', {
-            'artwork' : data
+            'artworkstuff' : data[0]
         });
     })
 })
