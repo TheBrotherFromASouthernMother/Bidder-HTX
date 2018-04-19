@@ -3,7 +3,7 @@
         <div class="row">
             {{#with artworkstuff}}
                 <div class="col-12 col-lg-6 lot-description">
-                    <h2 class="item-title">{{title}}</h2><p class="lot-number" lot-number="{{lot_number}}">Lot {{lot_number}}</p>
+                    <h2 class="item-title">{{title}}</h2><p class="lot-number">Lot {{lot_number}}</p>
                     <img src="{{images.[0]}}" class="item-img">
                     <p><span class="bold-header">By:</span> {{artist}}, {{year}}</p>
                     <p><span class="bold-header">FAIR MARKET VALUE:</span> ${{fmv}}</p>
@@ -14,7 +14,7 @@
                     <hr>
                     <p>To place a bid, please submit your payment information by clicking the button below.</p>
                     <form class="bid-form" action="/payment" method="GET">
-                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" name="bidAmount" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="" placeholder="{{add this.max this.bid_increments}}"><button class="submit-bid" type="submit">Submit Bid</button>
+                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" name="bidAmount" id="bid-amount" lot-number="{{lot_number}}" email="{{email}}" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="" placeholder="{{add this.max this.bid_increments}}"><button class="submit-bid" type="submit">Submit Bid</button>
                     </form>
                     <form action="/payment" method="POST">
                         <script
