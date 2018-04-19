@@ -18,7 +18,8 @@ router.get('/lot/:whatever', authenticateUser, (req,res) => {
     db.any(queryString).then(function(data) {
 
         res.render('layouts/lot', {
-            'artworkstuff' : data[0]
+            'artworkstuff' : data[0],
+            'userInfo': req.session.user
         });
     })
 })

@@ -12,9 +12,10 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/login', (req, res) => {
     if (req.session.user) {
-    res.redirect('/');
+    res.redirect('/artwork');
+  } else {
+      res.render('layouts/login')
   }
-  res.render('layouts/login')
   // res.send(`
   //   <!DOCTYPE html>
   //   <html>
@@ -45,7 +46,12 @@ router.post('/login', (req, res) => {
       // res == true
       console.log("Password match:", result);
       if (result === true) {
-      req.session.user = data.email;
+      req.session.user = {
+        email: data.email,
+        firstName: data.first_name,
+        lastName: data.last_name,
+        verified: data.verified
+      };
       res.redirect('/artwork');
       } else {
         res.send('Incorrect password')

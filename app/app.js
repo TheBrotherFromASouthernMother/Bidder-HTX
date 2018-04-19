@@ -84,7 +84,11 @@ app.use(require('./routes/lot-route.js'));
 app.use(require('./routes/auction-route.js'));
 
 app.get('/', (req, res, next) => {
-  res.send("site under construction");
+  if (req.session.user) {
+    res.redirect('/artwork');
+  } else {
+    res.redirect('/login');
+  }
 })
 
 app.get('/artwork', function(req, res) {
