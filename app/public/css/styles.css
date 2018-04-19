@@ -40,6 +40,28 @@ nav {
     margin-bottom: .75rem;
 }
 
+.register-form, .login-form {
+    max-width: 60%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 40px;
+}
+
+.register-form .form-row, .login-form .form-row  {
+    width: 100%;
+}
+
+.register-form input, .login-form input {
+    padding: 7px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.btn {
+    background-color: black;
+    color: white;
+}
+
 #footer {
     background-color: #e0dfdf;
     padding: 20px;

@@ -9,28 +9,33 @@ const db = require("../app.js").db;
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
+
 router.get('/login', (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title></title>
-      </head>
-      <body>
-        <form class="" action="/login" method="post">
-          <input type="text" name="email" value="" placeholder="username">
-          <input type="password" name="password" value="" placeholder="password">
-          <button type="submit" name="button"></button>
-        </form>
-      </body>
-    </html>
-    `)
+    if (req.session.user) {
+    res.redirect('/');
+  }
+  res.render('layouts/login')
+  // res.send(`
+  //   <!DOCTYPE html>
+  //   <html>
+  //     <head>
+  //       <meta charset="utf-8">
+  //       <title></title>
+  //     </head>
+  //     <body>
+  //       <form class="" action="/login" method="post">
+  //         <input type="text" name="email" value="" placeholder="username">
+  //         <input type="password" name="password" value="" placeholder="password">
+  //         <button type="submit" name="button"></button>
+  //       </form>
+  //     </body>
+  //   </html>
+  //   `)
 })
 
 router.post('/login', (req, res) => {
   if (req.session.user) {
-    res.redirect('/');
+    res.redirect('/artwork');
   }
   let {email, password} = req.body;
 
@@ -41,7 +46,7 @@ router.post('/login', (req, res) => {
       console.log("Password match:", result);
       if (result === true) {
       req.session.user = data.email;
-      res.redirect('/');
+      res.redirect('/artwork');
       } else {
         res.send('Incorrect password')
       }
