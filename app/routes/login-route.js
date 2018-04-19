@@ -9,7 +9,11 @@ const db = require("../app.js").db;
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
+
 router.get('/login', (req, res) => {
+    if (req.session.user) {
+    res.redirect('/');
+  }
   res.render('layouts/login')
   // res.send(`
   //   <!DOCTYPE html>

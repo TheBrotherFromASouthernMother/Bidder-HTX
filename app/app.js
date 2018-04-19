@@ -7,36 +7,6 @@ const bodyParser = require('body-parser');
 
 const cookieParser = require('cookie-parser');
 
-const handlebars = require("handlebars");
-handlebars.registerHelper("add", function(num1, num2) {
-  return num1 + num2;
-});
-
-const exphbs = require('express-handlebars');
-
-// socket.io requires
-const path = require('path');
-const http = require('http');
-const server = http.createServer(app);
-
-const io = require('socket.io').listen(server);
-server.listen(8000);
-// end socket.io requires
-
-const port = process.env.PORT || 3000;
-
-app.use(express.static(`${__dirname}/public`));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({ secret: "cats",
-                  resave: true,
-                  saveUninitialized: false,
-                  cookie: {
-                    expires: false, //closing the browser will not log the user out
-                    maxAge: 1 * 24 * 60 * 60 * 1000 //one day
-                  }
- }));
-
-
 const promise = require('bluebird');
 
 const initOptions = {
@@ -53,6 +23,36 @@ const db = pgp({
 });
 
 module.exports.db = db;
+
+const handlebars = require("handlebars");
+handlebars.registerHelper("add", function(num1, num2) {
+  return num1 + num2;
+});
+
+const exphbs = require('express-handlebars');
+
+// socket.io requires
+const path = require('path');
+const http = require('http');
+const server = http.createServer(app);
+
+// const io = require('socket.io').listen(server);
+// server.listen(8000);
+// end socket.io requires
+
+const port = process.env.PORT || 3000;
+
+app.use(express.static(`${__dirname}/public`));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({ secret: "cats",
+                  resave: true,
+                  saveUninitialized: false,
+                  cookie: {
+                    expires: false, //closing the browser will not log the user out
+                    maxAge: 1 * 24 * 60 * 60 * 1000 //one day
+                  }
+ }));
+
 
 // socket.io server listening and broadcasting for app.js
 // io.sockets.on('connection', function(socket) {
@@ -79,6 +79,7 @@ app.use(require("./routes/register.js"));
 app.use(require("./routes/payment-route.js"));
 app.use(require("./routes/artwork-route.js"));
 app.use(require('./routes/logout-route.js'));
+app.use(require('./routes/verification-route.js'));
 app.use(require('./routes/lot-route.js'));
 
 app.get('/', (req, res, next) => {
