@@ -12,6 +12,9 @@ const sendMail = require('../email.js').sendMail;
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/register', (req, res) => {
+  if (req.session.user) {
+    res.redirect('/');
+  }
   res.send(`  <!DOCTYPE html>
     <html>
       <head>

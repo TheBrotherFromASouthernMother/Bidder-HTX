@@ -10,6 +10,9 @@ const db = require("../app.js").db;
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/login', (req, res) => {
+  if (req.session.user) {
+    res.redirect('/');
+  }
   res.send(`
     <!DOCTYPE html>
     <html>
@@ -29,9 +32,6 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  if (req.session.user) {
-    res.redirect('/');
-  }
   let {email, password} = req.body;
 
   console.log(email, password);
