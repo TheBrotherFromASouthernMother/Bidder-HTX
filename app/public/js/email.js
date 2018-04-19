@@ -12,7 +12,7 @@ module.exports.sendMail = (targetAddress) => {
 
   let transporter = nodemailer.createTransport({
           service: 'gmail',
-          port: 587,
+          port: process.env.PORT || 587,
           secure: false, // true for 465, false for other ports
           auth: {
               user: email,
