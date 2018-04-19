@@ -10,20 +10,30 @@ const authenticateUser = require('../public/js/authenticateUser.js').authenticat
 
 router.get('/auction', authenticateUser, (req,res) => {
     
-    let date = new Date();
-    let timestamp = date.getTime();
-    console.log(timestamp);
+    let todaysDate = new Date(),
+        rightNow = todaysDate.getTime(),
+        dataToPass = [];
 
-    db.any('SELECT * FROM auctions;').then(function(data) {
-        console.log(data[0].start_timestamp);
-        var startDate = new Date(start_timestamp);
-        console.log(startDate);
-        console.log(data[0].end_timestamp);
-        console.log(data);
-        res.render('layouts/auction', {
-            'auctionsyo': data,
+    db.query('SELECT * FROM auctions;').then( data => {
+
+        data.forEach( obj => {
+            let startDate = obj.start_timestamp,
+                startTimeStamp = startDate.getTime(),
+                endDate = obj.end_timestamp,
+                endTimeStamp = endDate.getTime();
+            if (startTimeStamp < rightNow && endTimeStamp > rightNow) {
+                dataToPass = dataToPass.concat(obj);
+            };
         });
-    })
+
+
+        res.render('layouts/auction', {
+            'auctionsyo': dataToPass,
+        });
+    }).catch( err => {
+        console.log('Oh no there is an error', err)
+        res.send(`Oh no there is an error ${err}`)
+      })
 })
 
 module.exports = router;

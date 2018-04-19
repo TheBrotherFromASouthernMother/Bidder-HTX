@@ -1,5 +1,19 @@
 {{> header}}
+    <div class="container main-content">
+        <div class="row">
+            {{#each auctionsyo}}
+                <div class="col-12 col-lg-6 lot-description">
+                    <h2 class="item-title">{{this.auction_name}}</h2>
+                    <hr>
+                    <p><span class="bold-header">{{this.auction_desc}}</span></p>
+                    <button class="view-auction" auction-id="{{this.auction_id}}">Bid On It</button>
+                </div>
+            {{/each}}
+        </div>
+    </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
+<script type="text/javascript" src="js/bid-nav.js"></script>
 
 {{> footer}}
