@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 const db = require("../app.js").db;
 
-const sendMail = require('../email.js').sendMail;
+// const sendMail = require('../email.js').sendMail;
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
@@ -15,22 +15,7 @@ router.get('/register', (req, res) => {
   if (req.session.user) {
     res.redirect('/');
   }
-  res.send(`  <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title></title>
-      </head>
-      <body>
-        <form class="" action="/register" method="post">
-          <input type="text" name="last_name" value="" placeholder="last name">
-          <input type="text" name="first_name" value="" placeholder="first name">
-          <input type="text" name="email" value="" placeholder="email">
-          <input type="password" name="password" value="" placeholder="password">
-          <button type="submit" name="button"></button>
-        </form>
-      </body>
-    </html>`)
+  res.render('layouts/register')
 })
 
 router.post('/register', (req, res) => {

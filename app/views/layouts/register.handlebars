@@ -1,0 +1,32 @@
+{{> header}}
+    <div class="container main-content">
+        <h4>Register an account to place bids</h4>
+        <br>
+        <form class="register-form" action="/register" method="post">
+            <div class="form-row">
+                <div class="form-group col-12 col-lg-6">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" value="" placeholder="Last Name">
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" value="" placeholder="First Name">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-lg-6">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" value="" placeholder="Email">
+                </div>
+            <div class="form-group col-12 col-lg-6">
+                <label for="last_name">Password</label>
+                <input type="password" name="password" value="" placeholder="Password">
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    Password must be at least 6 characters long.
+                </small>
+            </div>
+            </div>
+            <button type="submit" class="btn" name="button">Register Account</button>
+        </form>
+    </div>
+{{> footer}}

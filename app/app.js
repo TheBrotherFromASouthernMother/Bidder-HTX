@@ -42,7 +42,7 @@ const server = http.createServer(app);
 
 const port = process.env.PORT || 3000;
 
-app.use(express.static('public'));
+app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: "cats",
                   resave: true,
@@ -80,6 +80,7 @@ app.use(require("./routes/payment-route.js"));
 app.use(require("./routes/artwork-route.js"));
 app.use(require('./routes/logout-route.js'));
 app.use(require('./routes/verification-route.js'));
+app.use(require('./routes/lot-route.js'));
 
 app.get('/', (req, res, next) => {
   res.send("site under construction");

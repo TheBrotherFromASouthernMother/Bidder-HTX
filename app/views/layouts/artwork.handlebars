@@ -10,12 +10,13 @@
                     <p><span class="bold-header">Dimensions:</span> {{this.dimensions}}</p>
                     <p><span class="bold-header">Materials:</span> {{this.materials}}</p>
                     <p><span class="bold-header">Edition:</span> {{this.edition}}</p>
-                    <p><span class="bold-header">Details:</span> {{{this.detail_desc}}}</p>
+                    <!-- <p><span class="bold-header">Details:</span> {{{this.detail_desc}}}</p>
                     <hr>
-                    <p>To place a bid, please submit your payment information by clicking the button below.</p>
-                    <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="{{add this.max this.bid_increments}}">
-                    
-                    <form action="/payment" method="POST">
+                    <p>To place a bid, please submit your bid amount below. The next minimum bid that can be submitted is currently displayed.</p>
+                    <form action="/payment" method="GET">
+                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" name="bidAmount" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="" placeholder="{{add this.max this.bid_increments}}"><button type="submit">Submit Bid</button>
+                    </form>
+                    <form action="/payment-success" method="POST">
                         <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
@@ -27,12 +28,15 @@
                             data-zip-code="true"
                             data-billing-address="true">
                         </script>
-                    </form>
+                    </form> -->
+
+                    <button class="bid-on-it" artwork-id="{{this.artwork_id}}">Bid On It</button>
+
                 </div>
             {{/each}}
         </div>
     </div>
-        {{!-- <div class="row">
+        <!-- <div class="row">
             <div class="col-12 col-lg-6 lot-description">
                 <h2 class="item-title">Artwork Title</h2><p class="lot-number">Lot #</p>
                 <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/1-big-colorful-elephant-kovacs-anna-brigitta.jpg" class="item-img">
@@ -70,9 +74,9 @@
                 <p><span class="bold-header">Details:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci eu lobortis elementum nibh. Pharetra massa massa ultricies mi quis hendrerit dolor magna eget. Purus gravida quis blandit turpis cursus in hac habitasse. Senectus et netus et malesuada fames ac turpis. Tortor aliquam nulla facilisi cras fermentum. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse sed.</p>
                 <hr>
                 <p>To place a bid, please submit your payment information by clicking the button below.</p>
-                <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="1" step="20" value="300">
+                <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="1" step="20" value="300"> -->
                 <!--socket.io bids -->
-                <form class="bidForm" action="">
+                <!-- <form class="bidForm" action="">
                     <input id="bid" autocomplete="off"></input><button>Submit Bid</button>
                 </form>
 
@@ -88,7 +92,7 @@
                         data-zip-code="true"
                         data-billing-address="true">
                     </script>
-                </form>
+                </form> -->
 
                 <!-- socket.io submit bids function -->
                 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -106,5 +110,9 @@
                 </script>
             </div>
         </div>
-    </div> --}}
+    </div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/bid-nav.js"></script>
+
 {{> footer}}
