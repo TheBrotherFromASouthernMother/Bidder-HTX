@@ -20,3 +20,6 @@ CREATE TABLE users (
     billing_address_zip     VARCHAR,
     billing_address_country VARCHAR
 );
+
+
+ALTER TABLE users ADD COLUMN activation_hash VARCHAR, ADD COLUMN verified BOOLEAN DEFAULT FALSE;
