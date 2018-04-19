@@ -34,9 +34,10 @@ router.post('/register', (req, res) => {
   let {last_name, first_name, email, password} = req.body;
   let hashedpwd = null;
   let activationHash = null;
-  if(!verifyLogin(res, last_name, first_name, email, password)) {
+  if(!verifyRegister(res, last_name, first_name, email, password)) {
     return;
   } else {
+    //create unique activationHash
     bcrypt.hash(email, saltRounds).then( hash => {
       activationHash = hash;
     })
@@ -53,7 +54,6 @@ router.post('/register', (req, res) => {
         bcrypt.hash(password, saltRounds)
         .then( (hash) => {
           hashedpwd = hash;
-          //TODO: after hashing the password, also hash the email and store it as the value for verification string
           db.any('INSERT INTO users(id, email, password, last_name, first_name, activation_hash) VALUES (DEFAULT, $1, $2, $3, $4, $5)', [email, hashedpwd, last_name, first_name, activationHash])
 
           //log the user by storing their id in the session
@@ -86,7 +86,7 @@ return validator.test(email);
 }
 
 
-function verifyLogin (response, lastName, firstName, email, password,) {
+function verifyRegister (response, lastName, firstName, email, password,) {
   if (lastName.length <= 0) {
     response.send('Please enter a last name');
     return false;
