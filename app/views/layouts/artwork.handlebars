@@ -12,10 +12,11 @@
                     <p><span class="bold-header">Edition:</span> {{this.edition}}</p>
                     <!-- <p><span class="bold-header">Details:</span> {{{this.detail_desc}}}</p>
                     <hr>
-                    <p>To place a bid, please submit your payment information by clicking the button below.</p>
-                    <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="{{add this.max this.bid_increments}}">
-                    
-                    <form action="/payment" method="POST">
+                    <p>To place a bid, please submit your bid amount below. The next minimum bid that can be submitted is currently displayed.</p>
+                    <form action="/payment" method="GET">
+                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" name="bidAmount" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="" placeholder="{{add this.max this.bid_increments}}"><button type="submit">Submit Bid</button>
+                    </form>
+                    {{!-- <form action="/payment-success" method="POST">
                         <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"

@@ -1,7 +1,7 @@
 {{> header}}
     <div class="container main-content">
         <div class="row">
-            {{#with artworkstuff}}
+            {{#with artwork}}
                 <div class="col-12 col-lg-6 lot-description">
                     <h2 class="item-title">{{title}}</h2><p class="lot-number">Lot {{lot_number}}</p>
                     <img src="{{images.[0]}}" class="item-img">
@@ -32,4 +32,5 @@
             {{/with}}
         </div>
     </div>
+    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
 {{> footer}}

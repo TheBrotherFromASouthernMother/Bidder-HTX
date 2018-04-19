@@ -6,7 +6,7 @@ router.use(bodyParser.urlencoded({extended :false}))
 const db = require("../app.js").db;
 
 
-const authenticateUser = require('./authenticateUser.js').authenticateUser;
+const authenticateUser = require('../public/js/authenticateUser.js').authenticateUser;
 
 router.get('/lot/:whatever', authenticateUser, (req,res) => {
 
@@ -16,7 +16,7 @@ router.get('/lot/:whatever', authenticateUser, (req,res) => {
 
     db.any(queryString).then(function(data) {
         res.render('layouts/lot', {
-            'artworkstuff' : data
+            'artwork' : data
         });
     })
 })
