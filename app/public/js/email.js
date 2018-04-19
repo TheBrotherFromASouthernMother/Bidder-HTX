@@ -6,13 +6,13 @@ const pass = 'DigitalCrafts713#';
 
 const fs = require('fs');
 
-// let welcomeMessage = fs.readFileSync('./views/registrationTemplate.html').toString();
+let welcomeMessage = fs.readFileSync('./views/registrationTemplate.html').toString();
 
 module.exports.sendMail = (targetAddress) => {
 
   let transporter = nodemailer.createTransport({
           service: 'gmail',
-          port: 587,
+          port: process.env.PORT || 587,
           secure: false, // true for 465, false for other ports
           auth: {
               user: email,

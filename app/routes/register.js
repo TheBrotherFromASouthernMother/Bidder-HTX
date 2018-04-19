@@ -7,15 +7,16 @@ const saltRounds = 10;
 
 const db = require("../app.js").db;
 
-// const sendMail = require('../email.js').sendMail;
+const sendMail = require('../public/js/email.js').sendMail;
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/register', (req, res) => {
   if (req.session.user) {
-    res.redirect('/');
+    res.redirect('/artwork');
+  } else {
+    res.render('layouts/register');
   }
-  res.render('layouts/register')
 })
 
 router.post('/register', (req, res) => {
@@ -68,9 +69,8 @@ module.exports = router;
 
 
 function testEmail(email) {
-
-let validator = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-return validator.test(email);
+  let validator = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  return validator.test(email);
 }
 
 
