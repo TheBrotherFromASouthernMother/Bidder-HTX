@@ -6,8 +6,9 @@ router.use(bodyParser.urlencoded({extended :false}))
 const db = require("../app.js").db;
 
 const authenticateUser = require('../public/js/authenticateUser.js').authenticateUser;
+const isUserVerified = require('../public/js/userVerification.js').isUserVerified;
 
-router.get('/payment', function(req,res) {
+router.get('/payment', authenticateUser, isUserVerified, function(req,res) {
     res.render('layouts/payment')
 });
 // router.post('/payment', function(req,res) {
