@@ -14,7 +14,7 @@
                     <hr>
                     <p>To place a bid, please submit your payment information by clicking the button below.</p>
                     <form class="bid-form" action="">
-                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" lot-number="{{lot_number}}" {{#if this.max}} min="{{add this.max this.bid_increments}}" {{else}} min="{{add this.starting_bid this.bid_increments}}" {{/if}} step="{{this.bid_increments}}" {{#if this.max}} placeholder="{{add this.max this.bid_increments}} {{else}} placeholder="{{add this.starting_bid this.bid_increments}}" {{/if}} "><button class="submit-bid" type="submit">Submit Bid</button>
+                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" lot-number="{{lot_number}}" {{#if this.max}} min="{{add this.max this.bid_increments}}" {{else}} min="{{this.starting_bid}}" {{/if}} step="{{this.bid_increments}}" {{#if this.max}} placeholder="{{add this.max this.bid_increments}} {{else}} placeholder="{{this.starting_bid}}" {{/if}} "><button class="submit-bid" type="submit">Submit Bid</button>
                     </form>
                 </div>
             {{/with}}
