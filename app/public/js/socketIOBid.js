@@ -1,5 +1,5 @@
 $(function () {
-  var socket = io.connect('http://localhost:8000');
+  var socket = io.connect('http://localhost:8000/');
   $('.bid-form').submit( () => {
     var bidSubmitted = $('#bid-amount').val();
     console.log(bidSubmitted);
@@ -8,7 +8,6 @@ $(function () {
     console.log(bidEvent);
     return false;
   });
-    // $.ajax( {url: '/before-payment', method: 'GET'} ).success( () => { window.location.assign('/payments') } );
   $('.bid-form').submit( () => {
     setTimeout( () => {
       window.location.assign('/payment');
