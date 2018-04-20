@@ -8,3 +8,6 @@ INSERT INTO lots (id, starting_bid, bid_increments, lot_number, artwork_id, auct
 
 INSERT INTO lots (id, starting_bid, bid_increments, lot_number, artwork_id, auction_id) VALUES
     (DEFAULT, 200.00, 10, 1, 4, 7);  
+
+INSERT INTO lots (id, starting_bid, bid_increments, lot_number, artwork_id, auction_id) VALUES
+    (DEFAULT, 200.00, 10, 1, 5, 7);  

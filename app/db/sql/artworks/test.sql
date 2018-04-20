@@ -47,3 +47,13 @@ INSERT INTO artworks VALUES (
 UPDATE artworks
 SET images = array_append(images, 'https://i0.wp.com/www.guggenheim.org/wp-content/uploads/1922/01/41.453_ph_web.jpg?w=870&zoom=2')
 WHERE id = 4;
+
+INSERT INTO artworks VALUES (
+    DEFAULT, 'In the Snow', 1930, '9 3/8 x 12 3/8 in (23.6 x 31.4 cm)', 'Gouache, ink, and watercolor on paper', '2nd Edition', 'Marc Chagall', 
+    'Marc Chagall was born on July 7, 1887, in Vitebsk, Russia. From 1907 to 1910 he studied in Saint Petersburg, at the Imperial Society for the Protection of the Arts, and later with Léon Bakst.',
+    1000000.00
+);
+
+UPDATE artworks
+SET images = array_append(images, 'https://i0.wp.com/www.guggenheim.org/wp-content/uploads/1922/01/41.453_ph_web.jpg?w=870&zoom=2')
+WHERE id = 4;

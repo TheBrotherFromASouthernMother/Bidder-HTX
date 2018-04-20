@@ -26,7 +26,6 @@ router.get('/auction', authenticateUser, (req,res) => {
             };
         });
 
-
         res.render('layouts/auction', {
             'auctionsyo': dataToPass,
         });
