@@ -11,22 +11,23 @@ router.get('/verification', (req, res) => {
   // if (req.session.user) {
   //   res.redirect('/');
   // }
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title></title>
-      </head>
-      <body>
-        <form class="" action="/verification" method="post">
-          <input type="text" name="email" value="" placeholder="username">
-          <input type="password" name="password" value="" placeholder="password">
-          <button type="submit" name="button"></button>
-        </form>
-      </body>
-    </html>
-    `)
+  res.render('layouts/verification');
+  // res.send(`
+  //   <!DOCTYPE html>
+  //   <html>
+  //     <head>
+  //       <meta charset="utf-8">
+  //       <title></title>
+  //     </head>
+  //     <body>
+  //       <form class="" action="/verification" method="post">
+  //         <input type="text" name="email" value="" placeholder="username">
+  //         <input type="password" name="password" value="" placeholder="password">
+  //         <button type="submit" name="button"></button>
+  //       </form>
+  //     </body>
+  //   </html>
+  //   `)
 })
 
 

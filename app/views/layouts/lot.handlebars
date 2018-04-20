@@ -12,23 +12,11 @@
                     <p><span class="bold-header">Edition:</span> {{edition}}</p>
                     <p><span class="bold-header">Details:</span> {{{detail_desc}}}</p>
                     <hr>
-                    <p>To place a bid, please submit your payment information by clicking the button below.</p>
+                    <p>To place a bid, please submit your bid amount below.</p>
                     <form action="/payment" method="GET" style="display: flex; align-items: baseline;">
                         <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" name="bidAmount" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="" placeholder="{{add this.max this.bid_increments}}">&nbsp;<button class="btn" type="submit">Submit Bid</button>
+                        <input type="hidden" name="artworkId" value="{{id}}">
                     </form>
-                    <!-- <form action="/payment" method="POST">
-                        <script
-                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
-                            data-amount="{{bid}}"
-                            data-name="Bidder"
-                            data-description="Widget"
-                            data-image="/images/paddle.png"
-                            data-locale="auto"
-                            data-zip-code="true"
-                            data-billing-address="true">
-                        </script>
-                    </form> -->
                 </div>
             {{/with}}
         </div>

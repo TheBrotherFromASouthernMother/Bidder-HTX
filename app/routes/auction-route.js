@@ -28,6 +28,7 @@ router.get('/auction', authenticateUser, (req,res) => {
 
         res.render('layouts/auction', {
             'auctionsyo': dataToPass,
+            'userInfo': req.session.user,
         });
     }).catch( err => {
         console.log('Oh no there is an error', err)

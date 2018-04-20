@@ -12,7 +12,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/login', (req, res) => {
     if (req.session.user) {
-      res.redirect('/artwork');
+      res.redirect('/auction');
   } else {
       res.render('layouts/login')
   }
@@ -48,6 +48,7 @@ router.post('/login', (req, res) => {
       if (result === true) {
       req.session.user = {
         email: data.email,
+        userdId: data.id,
         firstName: data.first_name,
         lastName: data.last_name,
         verified: data.verified
