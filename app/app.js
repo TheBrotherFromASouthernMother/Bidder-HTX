@@ -81,6 +81,7 @@ app.use(require("./routes/artwork-route.js"));
 app.use(require('./routes/logout-route.js'));
 app.use(require('./routes/verification-route.js'));
 app.use(require('./routes/lot-route.js'));
+app.use(require('./routes/auction-route.js'));
 
 app.get('/', (req, res, next) => {
   if (req.session.user) {
