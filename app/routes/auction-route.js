@@ -12,7 +12,8 @@ router.get('/auction', authenticateUser, (req,res) => {
 
     let todaysDate = new Date(),
         rightNow = todaysDate.getTime(),
-        dataToPass = [];
+        openAuctions = [],
+        upcomingAuctions = [];
 
     db.query('SELECT * FROM auctions;').then( data => {
 
@@ -22,12 +23,15 @@ router.get('/auction', authenticateUser, (req,res) => {
                 endDate = obj.end_timestamp,
                 endTimeStamp = endDate.getTime();
             if (startTimeStamp < rightNow && endTimeStamp > rightNow) {
-                dataToPass = dataToPass.concat(obj);
+                openAuctions = openAuctions.concat(obj);
+            } else if (startTimeStamp > rightNow) {
+                upcomingAuctions = upcomingAuctions.concat(obj);
             };
         });
-
+        
         res.render('layouts/auction', {
-            'auctionsyo': dataToPass,
+            'auctionsyo': openAuctions,
+            'notyetauctions' : upcomingAuctions
         });
     }).catch( err => {
         console.log('Oh no there is an error', err)
