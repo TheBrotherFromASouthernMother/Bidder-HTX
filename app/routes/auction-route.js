@@ -9,7 +9,7 @@ const db = require("../app.js").db;
 const authenticateUser = require('../public/js/authenticateUser.js').authenticateUser;
 
 router.get('/auction', authenticateUser, (req,res) => {
-    
+
     let todaysDate = new Date(),
         rightNow = todaysDate.getTime(),
         dataToPass = [];
