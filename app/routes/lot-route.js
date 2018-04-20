@@ -17,8 +17,7 @@ router.get('/lot/:whatever', authenticateUser, (req,res) => {
 
         res.render('layouts/lot', {
             'artworkstuff' : data[0],
-            'userInfo': req.session.user,
-            'bid': req.query.bidAmount
+            'userInfo': req.session.user
         });
     })
 })
