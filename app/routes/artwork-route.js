@@ -13,12 +13,32 @@ router.get('/artwork/:whatever', authenticateUser, (req,res) => {
     let whateverId = req.params.whatever;
     let queryString = 'SELECT * FROM lots INNER JOIN artworks ON artwork_id = artworks.id WHERE auction_id = '
     queryString = queryString.concat(whateverId).concat(";");
-    db.any(queryString).then(function(data) {
+
+    // db.any(queryString).then(function(data) {
+    //     res.render('layouts/artwork', {
+    //         'artworks': data,
+    //         'userInfo': req.session.user
+    //     });
+    // })
+
+
+    let queryStringName = 'SELECT * FROM auctions WHERE id = ';
+    queryStringName = queryStringName.concat(whateverId).concat(";");
+    let me = null;
+
+    let finalquery = queryString.concat(';').concat(queryStringName);
+
+    db.multi(finalquery)
+    .spread((data, name) => {
         res.render('layouts/artwork', {
-            'artworks': data, // make db record queried accessible on artwork page
-            'userInfo': req.session.user // grab user id from session
-        });
-    })
-})
+            'auctionname' : name[0],
+            'artworks': data,
+            'userInfo': req.session.user
+        })
+   })
+   .catch(error => {
+    console.log("there is an error ahh")
+    });
+});
 
 module.exports = router;
