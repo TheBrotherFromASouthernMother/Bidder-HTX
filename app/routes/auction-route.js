@@ -31,6 +31,7 @@ router.get('/auction', authenticateUser, (req,res) => {
         });
         
         res.render('layouts/auction', {
+            'userInfo': req.session.user,
             'auctionsyo': openAuctions,
             'notyetauctions' : upcomingAuctions
         });

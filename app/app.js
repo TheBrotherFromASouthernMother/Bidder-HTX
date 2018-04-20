@@ -93,14 +93,10 @@ app.use(require('./routes/auction-route.js'));
 
 app.get('/', (req, res, next) => {
   if (req.session.user) {
-    res.redirect('/artwork');
+    res.redirect('/auction');
   } else {
     res.redirect('/login');
   }
-});
-
-app.get('/artwork', function(req, res) {
-  res.render('layouts/artwork');
 });
 
 app.listen(port, ()=> {

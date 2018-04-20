@@ -12,17 +12,15 @@
                     <p><span class="bold-header">Edition:</span> {{edition}}</p>
                     <p><span class="bold-header">Details:</span> {{{detail_desc}}}</p>
                     <hr>
-                    <p>To place a bid, please submit your payment information by clicking the button below.</p>
-                    <form class="bid-form" action="">
-                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" id="bid-amount" lot-number="{{lot_number}}" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" placeholder="{{add this.max this.bid_increments}}"><button class="submit-bid" type="submit">Submit Bid</button>
+                    <p>To place a bid, please submit your bid amount below.</p>
+                    <form action="/payment" method="GET" style="display: flex; align-items: baseline;">
+                        <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" name="bidAmount" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="" placeholder="{{add this.max this.bid_increments}}">&nbsp;<button class="btn" type="submit">Submit Bid</button>
+                        <input type="hidden" name="artworkId" value="{{id}}">
                     </form>
                 </div>
             {{/with}}
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="http://localhost:8000/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/js/socketIOBid.js"></script>
-
 {{> footer}}
