@@ -8,33 +8,22 @@ const saltRounds = 10;
 const db = require("../app.js").db;
 
 router.get('/verification', (req, res) => {
-  // if (req.session.user) {
-  //   res.redirect('/');
-  // }
-  res.render('layouts/verification');
-  // res.send(`
-  //   <!DOCTYPE html>
-  //   <html>
-  //     <head>
-  //       <meta charset="utf-8">
-  //       <title></title>
-  //     </head>
-  //     <body>
-  //       <form class="" action="/verification" method="post">
-  //         <input type="text" name="email" value="" placeholder="username">
-  //         <input type="password" name="password" value="" placeholder="password">
-  //         <button type="submit" name="button"></button>
-  //       </form>
-  //     </body>
-  //   </html>
-  //   `)
+  if (req.session.user && req.session.user.verified === true) {
+    res.redirect('/artwork');
+    return;
+  }
+  res.render('layouts/verifyAccount');
 })
 
 
 router.post('/verification', (req, res) => {
-  let {email, password} = req.body;
+  let {email} = req.body;
   db.one('SELECT * FROM users WHERE email = $1', [email])
   .then( data => {
+    if (data.verified === true) {
+      res.send('already verified');
+      return;
+    }
     bcrypt.compare(email, data['activation_hash'])
     .then(result => {
       if (result === false) {

@@ -5,8 +5,8 @@ router.use(bodyParser.urlencoded({extended :false}))
 
 const db = require("../app.js").db;
 
-
 const authenticateUser = require('../public/js/authenticateUser.js').authenticateUser;
+
 // when on artwork specific pages, retrieve artwork ID from the url route parameter
 // in order to grab artwork information from db
 router.get('/artwork/:whatever', authenticateUser, (req,res) => {

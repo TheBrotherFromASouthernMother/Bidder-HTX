@@ -103,3 +103,10 @@ nav {
         right: 25px;
     }
 }
+
+.auction-title {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    padding-bottom: 20px;
+}
