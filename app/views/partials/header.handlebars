@@ -26,7 +26,7 @@
                 <a class="nav-item nav-link" href="/logout">Logout</a>
             </div>
             {{#with userInfo}}
-            <span class="navbar-text">Hello, {{firstName}} {{lastName}}! ({{email}})</span>
+            <span class="navbar-text" userId="{{userId}}">Hello, {{firstName}} {{lastName}}! ({{email}})</span>
             {{/with}}
         </div>
     </nav>
