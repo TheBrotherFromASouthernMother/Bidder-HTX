@@ -13,7 +13,7 @@
                     <p><span class="bold-header">Details:</span> {{{detail_desc}}}</p>
                     <hr>
                     <p>To place a bid, please submit your bid amount below.</p>
-                    <form action="/payment" method="GET" style="display: flex; align-items: baseline;">
+                    <form action='/payment/' style="display: flex; align-items: baseline;">
                         <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" name="bidAmount" id="bid-amount" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="" placeholder="{{add this.max this.bid_increments}}">&nbsp;<button class="btn" type="submit">Submit Bid</button>
                         <input type="hidden" name="artworkId" value="{{id}}">
                     </form>
@@ -21,6 +21,5 @@
             {{/with}}
         </div>
     </div>
-    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="/js/socketIOBid.js"></script>
+    
 {{> footer}}
