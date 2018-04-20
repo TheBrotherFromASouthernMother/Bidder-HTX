@@ -43,7 +43,7 @@ app.use(session({ secret: "cats",
                   saveUninitialized: false,
                   cookie: {
                     expires: true, //closing the browser will not log the user out
-                    // maxAge: 1 * 24 * 60 * 60 * 1000 //one day
+                    maxAge: 1 * 24 * 60 * 60 * 1000 //one day
                   }
  }));
 
