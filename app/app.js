@@ -36,8 +36,8 @@ const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
 
-// const io = require('socket.io').listen(server);
-// server.listen(8000);
+const io = require('socket.io').listen(server);
+server.listen(8000);
 // end socket.io requires
 
 const port = process.env.PORT || 3000;
@@ -53,21 +53,49 @@ app.use(session({ secret: "cats",
                   }
  }));
 
+// socket.io server
+var clients = 0;
+var bidData;
+// when some client connects, this executes:
+var socketServer = io.on('connection', function(socket) {
+  clients++;
+  console.log('A client has connected. ' + clients + ' now connected.');
 
-// socket.io server listening and broadcasting for app.js
-// io.sockets.on('connection', function(socket) {
-//
-//   // listen to incoming bids
-//   socket.on('bid', function(content) {
-//     console.log('bid is: ' + content); // submitted bid is transmitted back to server
-//     // echo to the sender
-//     socket.emit('bid', content['amount']);
-//
-//     // broadcast the bid to all clients
-//     socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
-//   });
-// });
+  // listen to incoming bids
+  var incomingBid = socket.on('bid', function(bidEvent) {
+    console.log('Incoming bid: ' + bidEvent.bidAmount + ' from ' + bidEvent.userId + ' for lot ' + bidEvent.lotNumber); // submitted bid is transmitted back to server; use content to parse for bidValue, email, lotId to update db (pass to another route js???)
+    var bidData = bidEvent;
+    console.log('updating bids TABLE with: ' + bidData);
+    
+    db.one('INSERT INTO bids VALUES (DEFAULT, $1, NOW(), FALSE, $2, $3) RETURNING *', [bidEvent.bidAmount, bidEvent.userId, bidEvent.lotNumber])
+      .then(bidData => {
+        console.log('bids TABLE was updated successfully as id#', bidData.id); // confirm bid data updated to db
+      })
+      .catch(error => {
+        console.log('bids TABLE was not updated successfully! ', error);
+      });
+    
 
+    // return bidData; //
+
+    // // echo to the sender: is this necessary?
+    // socket.emit('bid', content['amount']);
+
+    // // broadcast the bid to all clients: is this necessary? Just need to pass data to js file to send to db, yeah?
+    // socket.broadcast.emit('bid', socket.id + 'bid: ' + content['amount']);
+
+
+  //when some client disconnects, this executes:
+    socket.on('disconnect', function() {
+      clients--;
+      console.log('A client has disconnected. ' + clients + ' still connected.');
+    });
+  });
+});
+var sendBidDataToServer = socketServer;
+// console.log(sendBidDataToServer);
+// console.log('bid data to send: ' + bidData);
+// module.exports.sendBidDataToServer = sendBidDataToServer;
 
 
 app.set('views', './views');
