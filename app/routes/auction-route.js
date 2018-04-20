@@ -41,4 +41,37 @@ router.get('/auction', authenticateUser, (req,res) => {
       })
 })
 
+router.post('/auction', authenticateUser, function(req,res) {
+    // get todays date and timestamp
+    let todaysDate = new Date(),
+        rightNow = todaysDate.getTime(),
+        openAuctions = [],
+        upcomingAuctions = [];
+
+    db.query('SELECT * FROM auctions;').then( data => {
+
+        // separate auctions by timestamp for open vs upcoming auctions
+        data.forEach( obj => {
+            let startDate = obj.start_timestamp,
+                startTimeStamp = startDate.getTime(),
+                endDate = obj.end_timestamp,
+                endTimeStamp = endDate.getTime();
+            if (startTimeStamp < rightNow && endTimeStamp > rightNow) {
+                openAuctions = openAuctions.concat(obj);
+            } else if (startTimeStamp > rightNow) {
+                upcomingAuctions = upcomingAuctions.concat(obj);
+            };
+        });
+        
+        res.render('layouts/auction', {
+            'userInfo': req.session.user,
+            'auctionsyo': openAuctions,
+            'notyetauctions' : upcomingAuctions
+        });
+    }).catch( err => {
+        console.log('Oh no there is an error', err)
+        res.send(`Oh no there is an error ${err}`)
+      })
+})
+
 module.exports = router;

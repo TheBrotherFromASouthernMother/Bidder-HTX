@@ -51,7 +51,7 @@ app.use(session({ secret: "cats",
 var clients = 0;
 var bidData;
 // when some client connects:
-var socketServer = io.on('connection', function(socket) {
+io.on('connection', function(socket) {
   clients++; // client counter decreases
   console.log('A client has connected. ' + clients + ' now connected.');
 
@@ -77,6 +77,10 @@ var socketServer = io.on('connection', function(socket) {
     });
   });
 });
+// var sendBidDataToServer = socketServer;
+// console.log(sendBidDataToServer);
+// console.log('bid data to send: ' + bidData);
+// module.exports.sendBidDataToServer = sendBidDataToServer;
 
 app.set('views', './views');
 app.engine('handlebars', exphbs());
@@ -98,7 +102,6 @@ app.get('/', (req, res, next) => {
     res.redirect('/login');
   }
 });
-
 app.listen(port, ()=> {
   console.log(`Server listening on port`)
 });

@@ -9,7 +9,7 @@ const db = require("../app.js").db;
 
 router.get('/verification', (req, res) => {
   if (req.session.user && req.session.user.verified === true) {
-    res.redirect('/artwork');
+    res.redirect('/auction');
     return;
   }
   res.render('layouts/verifyAccount');
@@ -51,6 +51,5 @@ router.post('/verification', (req, res) => {
     return;
   })
 })
-
 
 module.exports = router;
