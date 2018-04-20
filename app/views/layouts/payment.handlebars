@@ -1,13 +1,16 @@
 {{> header}}
     <div class="container main-content">
+        {{#with userInfo}}
+        <h3>Hi, {{firstName}}. Are you sure you want to bid {{bid}}?</h3>
+        {{/with}}
         <form action="/payment-success" method="POST">
             <script
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
-                data-amount="999"
-                data-name="Bid On It"
+                data-amount="{{bid}}00"
+                data-name="Bidder"
                 data-description="Widget"
-                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-image="/images/paddle.png"
                 data-locale="auto"
                 data-zip-code="true"
                 data-billing-address="true">

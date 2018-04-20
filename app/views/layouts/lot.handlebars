@@ -16,11 +16,11 @@
                     <form action="/lot/{{lot_number}}" method="GET">
                         <label for="bid-amount"><b>Bid Amount: $</b></label><input type="number" name="bidAmount" id="bid-amount" lot-number="{{lot_number}}" email="{{email}}" min="{{add this.max this.bid_increments}}" step="{{this.bid_increments}}" value="" placeholder="{{add this.max this.bid_increments}}"><button type="submit">Submit Bid</button>
                     </form>
-                    <form action="/payment" method="POST">
+                    <!-- <form action="/payment" method="POST">
                         <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"
-                            data-amount="999"
+                            data-amount="{{bid}}"
                             data-name="Bidder"
                             data-description="Widget"
                             data-image="/images/paddle.png"
@@ -28,12 +28,12 @@
                             data-zip-code="true"
                             data-billing-address="true">
                         </script>
-                    </form>
+                    </form> -->
                 </div>
             {{/with}}
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
+    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
 {{> footer}}

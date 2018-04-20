@@ -11,15 +11,15 @@ const authenticateUser = require('../public/js/authenticateUser.js').authenticat
 router.get('/lot/:whatever', authenticateUser, (req,res) => {
 
     let whateverId = req.params.whatever;
-    let queryString = 'WITH high_bids AS (SELECT MAX(bid_amount), lot_id FROM bids GROUP BY lot_id) SELECT * FROM high_bids INNER JOIN lots ON lot_id = lots.id INNER JOIN artworks ON artworks.id = artwork_id WHERE artwork_id = ';
-    queryString = queryString.concat(whateverId).concat(";");
+    let queryString = 'WITH high_bids AS (SELECT MAX(bid_amount), lot_id FROM bids GROUP BY lot_id) SELECT * FROM high_bids INNER JOIN lots ON lot_id = lots.id INNER JOIN artworks ON artworks.id = artwork_id WHERE artwork_id = $1';
+    // queryString = queryString.concat(whateverId).concat(";");
 
-
-    db.any(queryString).then(function(data) {
+    db.any(queryString, [whateverId]).then(function(data) {
 
         res.render('layouts/lot', {
             'artworkstuff' : data[0],
-            'userInfo': req.session.user
+            'userInfo': req.session.user,
+            'bid': req.query.bidAmount
         });
     })
 })

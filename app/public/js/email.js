@@ -6,7 +6,7 @@ const pass = 'DigitalCrafts713#';
 
 const fs = require('fs');
 
-let welcomeMessage = fs.readFileSync('./views/registrationTemplate.html').toString();
+//let welcomeMessage = fs.readFileSync('./views/registrationTemplate.html').toString();
 
 module.exports.sendMail = (targetAddress) => {
 
