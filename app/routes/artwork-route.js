@@ -19,6 +19,7 @@ router.get('/artwork/:whatever', authenticateUser, (req,res) => {
             'userInfo': req.session.user
         });
     })
+
 })
 
 module.exports = router;
