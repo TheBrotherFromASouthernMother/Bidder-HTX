@@ -14,14 +14,7 @@ router.get('/artwork/:whatever', authenticateUser, (req,res) => {
     let queryString = 'SELECT * FROM lots INNER JOIN artworks ON artwork_id = artworks.id WHERE auction_id = '
     queryString = queryString.concat(whateverId).concat(";");
 
-    // db.any(queryString).then(function(data) {
-    //     res.render('layouts/artwork', {
-    //         'artworks': data,
-    //         'userInfo': req.session.user
-    //     });
-    // })
-
-
+    // to select auction specific info from db
     let queryStringName = 'SELECT * FROM auctions WHERE id = ';
     queryStringName = queryStringName.concat(whateverId).concat(";");
     let me = null;
