@@ -1,12 +1,30 @@
 {{> header}}
     <div class="container main-content">
+        <h2 class="auction-title">Open Auctions</h2>
         <div class="row">
             {{#each auctionsyo}}
                 <div class="col-12 col-lg-6 lot-description">
                     <h2 class="item-title">{{this.auction_name}}</h2>
                     <hr>
+                    <p class="lot-number"><em><b>Opens:</b> {{this.start_timestamp}}
+                    <br>
+                    <b>Closes:</b> {{this.end_timestamp}}</em></p>
                     <p><span class="bold-header">{{this.auction_desc}}</span></p>
                     <button class="view-auction btn" auction-id="{{this.id}}">View Auction</button>
+                </div>
+            {{/each}}
+        </div>
+        <br><br>
+        <h2 class="auction-title">Upcoming Auctions</h2>
+        <div class="row">
+            {{#each notyetauctions}}
+                <div class="col-12 col-lg-6 lot-description">
+                    <h2 class="item-title">{{this.auction_name}}</h2>
+                    <hr>
+                    <p class="lot-number"><em><b>Opens:</b> {{this.start_timestamp}}
+                    <br>
+                    <b>Closes:</b> {{this.end_timestamp}}</em></p>
+                    <p><span class="bold-header">{{this.auction_desc}}</span></p>
                 </div>
             {{/each}}
         </div>
