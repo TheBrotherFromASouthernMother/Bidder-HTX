@@ -75,6 +75,12 @@ nav {
     background-color: rgba(0,0,0,0.5);
 }
 
+.payment-img {
+    margin-top: 20px;
+    max-width: 340px;
+    padding: 0;
+}
+
 #footer {
     background-color: #e0dfdf;
     padding: 20px;

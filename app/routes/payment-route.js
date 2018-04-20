@@ -8,21 +8,19 @@ const db = require("../app.js").db;
 const authenticateUser = require('../public/js/authenticateUser.js').authenticateUser;
 const isUserVerified = require('../public/js/userVerification.js').isUserVerified;
 
+// when on the payment url, retrieve the artwork ID from the url query
+// in order to grab artwork information from db
 router.get('/payment', authenticateUser, isUserVerified, function(req,res) {
-    res.render('layouts/payment', {
-        'bid': req.query.bidAmount,
-        'userInfo': req.session.user
-    })
+    let artworkId = req.query.artworkId;
+    let queryString = 'SELECT * FROM artworks WHERE id = ';
+    queryString = queryString.concat(artworkId).concat(";");
+    db.any(queryString).then(function(data) {
+        res.render('layouts/payment', {
+            'bid': req.query.bidAmount, // grab bid amount from url query
+            'userInfo': req.session.user, // grab user id from session
+            'artworkInfo': data[0] // make db record queried accessible on payment page
+        })
+    });
 });
-// router.post('/payment', function(req,res) {
-//    let newBid = req.body.bidAmount;
-//    db.none('INSERT INTO bids(bid_amount) values($1)',[newBid]).then(function() {
-//        db.any('SELCT * FROM bids').then(function(data) {
-//            res.render('payment', {
-//                'bids': data
-//            });
-//        })
-//    })
-// })
 
 module.exports = router;
