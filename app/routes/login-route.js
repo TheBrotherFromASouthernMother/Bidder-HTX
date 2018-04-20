@@ -12,7 +12,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/login', (req, res) => {
     if (req.session.user) {
-    res.redirect('/artwork');
+      res.redirect('/artwork');
   } else {
       res.render('layouts/login')
   }
