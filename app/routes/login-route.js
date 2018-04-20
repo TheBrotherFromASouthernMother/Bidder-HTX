@@ -11,6 +11,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 
 router.get('/login', (req, res) => {
+    // redirect if user is logged in already
     if (req.session.user) {
       res.redirect('/artwork');
   } else {
@@ -19,13 +20,8 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  // redirect if user is logged in already
-  if (req.session.user) {
-    res.redirect('/auction');
-  }
-  let {email, password} = req.body;
 
-  console.log(email, password);
+  let {email, password} = req.body;
 
   db.one('SELECT * FROM users WHERE email = $1', [email]).then( data => {
     //check if user account exists, then compare stored password with input password
