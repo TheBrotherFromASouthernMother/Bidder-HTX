@@ -13,7 +13,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.get('/login', (req, res) => {
     // redirect if user is logged in already
     if (req.session.user) {
-      res.redirect('/artwork');
+      res.redirect('/auction');
   } else {
       res.render('layouts/login')
   }

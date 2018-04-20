@@ -13,7 +13,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/register', (req, res) => {
   if (req.session.user) {
-    res.redirect('/artwork');
+    res.redirect('/auction');
   } else {
     res.render('layouts/register');
   }
@@ -38,13 +38,11 @@ router.post('/register', (req, res) => {
         console.log('username already exists');
         res.send('username already exists')
       }).catch( err => {
-
         //if user is not in database, hash their password and saved their data to database
         bcrypt.hash(password, saltRounds)
         .then( (hash) => {
           hashedpwd = hash;
           db.any('INSERT INTO users(id, email, password, last_name, first_name, activation_hash) VALUES (DEFAULT, $1, $2, $3, $4, $5)', [email, hashedpwd, last_name, first_name, activationHash])
-
           //log the user by storing their id in the session
           .then( data => {console.log('saved to database');
           req.session.user = email;
