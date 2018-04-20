@@ -1,6 +1,6 @@
 module.exports.authenticateUser =  (req, res, next) => {
   if (!req.session.user) {
-    res.send('Unauthorized access attempt')
+    res.render('layouts/acess');
   } else {
     return next();
   }
