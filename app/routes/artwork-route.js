@@ -25,23 +25,19 @@ router.get('/artwork/:whatever', authenticateUser, (req,res) => {
     queryStringName = queryStringName.concat(whateverId).concat(";");
     let me = null;
 
-    db.task( t => {
-        return t.any(queryStringName)
-        .then( stuff => {
-            return t.any(queryString);
-        });
-    })
-    .then(function(data) {
-        console.log("data", data);
+    let finalquery = queryString.concat(';').concat(queryStringName);
+
+    db.multi(finalquery)
+    .spread((data, name) => {
         res.render('layouts/artwork', {
+            'auctionname' : name[0],
             'artworks': data,
             'userInfo': req.session.user
         })
-    })
-    .catch(error => {
-        console.log("there is an error ahh")
+   })
+   .catch(error => {
+    console.log("there is an error ahh")
     });
-
 });
 
 module.exports = router;

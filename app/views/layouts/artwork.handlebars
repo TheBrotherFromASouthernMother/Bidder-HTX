@@ -1,5 +1,8 @@
 {{> header}}
     <div class="container main-content">
+        {{#with auctionname}}
+        <h2 class="auction-title">{{this.auction_name}}</h2>
+        {{/with}}
         <div class="row">
             {{#each artworks}}
                 <div class="col-12 col-lg-6 lot-description">
