@@ -21,7 +21,7 @@ router.post('/verification', (req, res) => {
   db.one('SELECT * FROM users WHERE email = $1', [email])
   .then( data => {
     if (data.verified === true) {
-      res.send('already verified');
+      res.redirect('/login');
       return;
     }
     bcrypt.compare(email, data['activation_hash'])
