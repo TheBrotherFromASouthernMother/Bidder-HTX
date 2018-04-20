@@ -3,7 +3,10 @@
         <div class="row">
             <div class="col-lg-6">
                 {{#with userInfo}}
-                <h5>Hi, {{firstName}}{{/with}}.</h5><p>Are you sure you want to bid <b>${{bid}}</b> on:<br>{{#with artworkInfo}}<b>{{title}}</b> by {{artist}}?{{/with}}</p>
+                <h5>Hi, {{firstName}}{{/with}}.</h5><p>Are you sure you want to bid <b id="bid-amount" bid-amount="{{bid}}">${{bid}}</b> on:<br>{{#with artworkInfo}}<b>{{title}}</b> by {{artist}}?{{/with}}</p>
+                {{#with artworkInfo}}
+                <span class="lot-number" lot-number="{{lot_number}}"></span>
+                {{/with}}
                 <form action="/payment-success" method="POST">
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -23,4 +26,7 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/socketIOBid.js"></script>
 {{> footer}}
