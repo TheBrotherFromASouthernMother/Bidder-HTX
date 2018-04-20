@@ -8,6 +8,7 @@
   "main": "app.js",
   "scripts": {
     "postinstall": "npm install bcypt",
+    "heroku-prebuild": "npm install bcrypt",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
