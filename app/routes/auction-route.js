@@ -5,11 +5,11 @@ router.use(bodyParser.urlencoded({extended :false}))
 
 const db = require("../app.js").db;
 
-
 const authenticateUser = require('../public/js/authenticateUser.js').authenticateUser;
 
 router.get('/auction', authenticateUser, (req,res) => {
 
+    // get todays date and timestamp
     let todaysDate = new Date(),
         rightNow = todaysDate.getTime(),
         openAuctions = [],
@@ -17,6 +17,7 @@ router.get('/auction', authenticateUser, (req,res) => {
 
     db.query('SELECT * FROM auctions;').then( data => {
 
+        // separate auctions by timestamp for open vs upcoming auctions
         data.forEach( obj => {
             let startDate = obj.start_timestamp,
                 startTimeStamp = startDate.getTime(),
