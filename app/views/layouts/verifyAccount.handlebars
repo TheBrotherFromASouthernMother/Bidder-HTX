@@ -1,0 +1,22 @@
+{{> header}}
+<div class="container main-content">
+  <h2>Please type your email below</h2>
+  <script type="text/javascript">
+  console.log('AHHHHHHH!!!X')
+    function handleServerResponse(data) {
+      alert('NNNNNNNNNNN')
+    }
+  </script>
+  <form class="login-form" action="/verification" method="post" onsubmit="return handleServerResponse(data);">
+      <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+              <label for="email">Email</label>
+              <input type="text" name="email" value="" placeholder="Email">
+          </div>
+      </div>
+      <button type="submit" class="btn" name="button">Login</button>
+  </form>
+</div>
+
+
+{{> footer}}

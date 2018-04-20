@@ -28,8 +28,6 @@ router.get('/auction', authenticateUser, (req,res) => {
                 upcomingAuctions = upcomingAuctions.concat(obj);
             };
         });
-
-        console.log(upcomingAuctions);
         
         res.render('layouts/auction', {
             'auctionsyo': openAuctions,
