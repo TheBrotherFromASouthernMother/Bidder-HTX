@@ -9,7 +9,10 @@ const authenticateUser = require('../public/js/authenticateUser.js').authenticat
 const isUserVerified = require('../public/js/userVerification.js').isUserVerified;
 
 router.get('/payment', authenticateUser, isUserVerified, function(req,res) {
-    res.render('layouts/payment')
+    res.render('layouts/payment', {
+        'bid': req.query.bidAmount,
+        'userInfo': req.session.user
+    })
 });
 // router.post('/payment', function(req,res) {
 //    let newBid = req.body.bidAmount;

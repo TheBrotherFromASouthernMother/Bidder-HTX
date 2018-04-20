@@ -12,7 +12,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/login', (req, res) => {
     if (req.session.user) {
-    res.redirect('/artwork');
+      res.redirect('/artwork');
   } else {
       res.render('layouts/login')
   }
@@ -21,7 +21,7 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res) => {
   // redirect if user is logged in already
   if (req.session.user) {
-    res.redirect('/artwork');
+    res.redirect('/auction');
   }
   let {email, password} = req.body;
 
@@ -40,7 +40,7 @@ router.post('/login', (req, res) => {
         lastName: data.last_name,
         verified: data.verified
       };
-      res.redirect('/artwork');
+      res.redirect('/auction');
       } else {
         res.send('Incorrect password')
       }
