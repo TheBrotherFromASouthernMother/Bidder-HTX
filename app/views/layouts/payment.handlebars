@@ -4,7 +4,7 @@
             <div class="col-lg-6">
                 {{#with userInfo}}
                 <h5>Hi, {{firstName}}{{/with}}.</h5><p>Are you sure you want to bid <b>${{bid}}</b> on:<br>{{#with artworkInfo}}<b>{{title}}</b> by {{artist}}?{{/with}}</p>
-                <form action="/payment-success" method="POST">
+                <form action="/auction" method="POST">
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="pk_test_u4d3KsBxMKRpjSa8ct5UupZO"

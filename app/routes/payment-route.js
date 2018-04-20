@@ -12,7 +12,7 @@ const isUserVerified = require('../public/js/userVerification.js').isUserVerifie
 // in order to grab artwork information from db
 router.get('/payment', authenticateUser, isUserVerified, function(req,res) {
     let artworkId = req.query.artworkId;
-    let queryString = 'SELECT * FROM artworks WHERE id = ';
+    let queryString = 'SELECT * FROM artworks INNER JOIN lots ON lots.artwork_id = artworks.id WHERE artworks.id = ';
     queryString = queryString.concat(artworkId).concat(";");
     db.any(queryString).then(function(data) {
         res.render('layouts/payment', {
