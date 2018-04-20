@@ -55,6 +55,7 @@ app.use(session({ secret: "cats",
 
 // socket.io server
 var clients = 0;
+var bidData;
 // when some client connects, this executes:
 var socketServer = io.on('connection', function(socket) {
   clients++;
@@ -62,9 +63,20 @@ var socketServer = io.on('connection', function(socket) {
 
   // listen to incoming bids
   var incomingBid = socket.on('bid', function(bidEvent) {
-    console.log('Incoming bid: ' + bidEvent.bidAmount + ' from ' + bidEvent.email + ' for lot ' + bidEvent.lotNumber); // submitted bid is transmitted back to server; use content to parse for bidValue, email, lotId to update db (pass to another route js???)
+    console.log('Incoming bid: ' + bidEvent.bidAmount + ' from ' + bidEvent.userId + ' for lot ' + bidEvent.lotNumber); // submitted bid is transmitted back to server; use content to parse for bidValue, email, lotId to update db (pass to another route js???)
     var bidData = bidEvent;
-    return bidData; //
+    console.log('updating bids TABLE with: ' + bidData);
+    
+    db.one('INSERT INTO bids VALUES (DEFAULT, $1, NOW(), FALSE, $2, $3) RETURNING *', [bidEvent.bidAmount, bidEvent.userId, bidEvent.lotNumber])
+      .then(bidData => {
+        console.log('bids TABLE was updated successfully as id#', bidData.id); // confirm bid data updated to db
+      })
+      .catch(error => {
+        console.log('bids TABLE was not updated successfully! ', error);
+      });
+    
+
+    // return bidData; //
 
     // // echo to the sender: is this necessary?
     // socket.emit('bid', content['amount']);
@@ -82,7 +94,8 @@ var socketServer = io.on('connection', function(socket) {
 });
 var sendBidDataToServer = socketServer;
 // console.log(sendBidDataToServer);
-module.exports.sendBidDataToServer = sendBidDataToServer;
+// console.log('bid data to send: ' + bidData);
+// module.exports.sendBidDataToServer = sendBidDataToServer;
 
 
 app.set('views', './views');
