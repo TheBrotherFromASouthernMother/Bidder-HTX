@@ -12,27 +12,12 @@ router.get('/verification', (req, res) => {
     res.redirect('/artwork');
     return;
   }
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title></title>
-      </head>
-      <body>
-        <form class="" action="/verification" method="post">
-          <input type="text" name="email" value="" placeholder="username">
-          <input type="password" name="password" value="" placeholder="password">
-          <button type="submit" name="button"></button>
-        </form>
-      </body>
-    </html>
-    `)
+  res.render('layouts/verifyAccount');
 })
 
 
 router.post('/verification', (req, res) => {
-  let {email, password} = req.body;
+  let {email} = req.body;
   db.one('SELECT * FROM users WHERE email = $1', [email])
   .then( data => {
     if (data.verified === true) {
