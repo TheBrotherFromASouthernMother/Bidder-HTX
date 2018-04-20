@@ -42,8 +42,8 @@ app.use(session({ secret: "cats",
                   resave: true,
                   saveUninitialized: false,
                   cookie: {
-                    expires: false, //closing the browser will not log the user out
-                    maxAge: 1 * 24 * 60 * 60 * 1000 //one day
+                    expires: true, //closing the browser will not log the user out
+                    // maxAge: 1 * 24 * 60 * 60 * 1000 //one day
                   }
  }));
 
@@ -60,7 +60,7 @@ var socketServer = io.on('connection', function(socket) {
     console.log('Incoming bid: ' + bidEvent.bidAmount + ' from ' + bidEvent.userId + ' for lot ' + bidEvent.lotNumber); // submitted bid is transmitted back to server; use content to parse for bidValue, email, lotId to update db (pass to another route js???)
     var bidData = bidEvent;
     console.log('updating bids TABLE with: ' + bidData);
-    
+
     // SQL statement to update bid TABLE
     db.one('INSERT INTO bids VALUES (DEFAULT, $1, NOW(), FALSE, $2, $3) RETURNING *', [bidEvent.bidAmount, bidEvent.userId, bidEvent.lotNumber])
       .then(bidData => {
@@ -69,7 +69,7 @@ var socketServer = io.on('connection', function(socket) {
       .catch(error => {
         console.log('bids TABLE was not updated successfully! ', error);
       });
-    
+
   //when some client disconnects:
     socket.on('disconnect', function() {
       clients--; // client counter decreases
