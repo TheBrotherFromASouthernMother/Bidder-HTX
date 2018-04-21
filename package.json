@@ -7,8 +7,7 @@
   "description": "An app to bid on art in Houston",
   "main": "app.js",
   "scripts": {
-    "postinstall": "npm install bcrypt",
-    "heroku-prebuild": "npm install bcrypt",
+    "start": "cd app; node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
