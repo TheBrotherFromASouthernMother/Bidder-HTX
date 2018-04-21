@@ -2,7 +2,7 @@
   "name": "bidder",
   "version": "1.0.0",
   "engines": {
-    "node": "8.9.4"
+    "node": "8.11.1"
   },
   "description": "An app to bid on art in Houston",
   "main": "app.js",
