@@ -6,6 +6,11 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const promise = require('bluebird');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+module.exports.bcrypt = bcrypt;
+
+
 const initOptions = {
   // Initialization Options
   promiseLib: promise
@@ -40,7 +45,6 @@ const server = http.createServer(app);
 server.listen(process.env.PORT);
 const io = require('socket.io').listen(server);
 
-
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ name: 'session',
@@ -52,10 +56,12 @@ app.use(session({ name: 'session',
  }));
 
 // socket.io server
+let socketList = [];
 var clients = 0;
 var bidData;
 // when some client connects:
 io.on('connection', function(socket) {
+  console.log(socketList)
   clients++; // client counter decreases
   console.log('A client has connected. ' + clients + ' now connected.');
 
