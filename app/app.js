@@ -37,13 +37,13 @@ const exphbs = require('express-handlebars');
 // end socket.io requires
 
 const port = process.env.PORT || 3000;
-
-
+const socketPort = process.env.PORT && !port;
+console.log(socketPort)
 const path = require('path');
 const http = require('http');
-// const server = http.createServer(app);
-// server.listen(process.env.PORT);
-// const io = require('socket.io').listen(server);
+const server = http.createServer(app);
+server.listen(socketPort);
+const io = require('socket.io').listen(server);
 
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: false }));

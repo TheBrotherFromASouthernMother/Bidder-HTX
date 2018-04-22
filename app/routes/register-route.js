@@ -44,12 +44,18 @@ router.post('/register', (req, res) => {
         .then( (hash) => {
           hashedpwd = hash;
           db.any('INSERT INTO users(id, email, password, last_name, first_name, activation_hash) VALUES (DEFAULT, $1, $2, $3, $4, $5)', [email, hashedpwd, last_name, first_name, activationHash])
-
           //log the user by storing their id in the session
-          .then( data => {console.log('saved to database');
-          req.session.user = email;
+          .then( data => {
+          console.log('saved to database');
+          req.session.user = {
+            email: data.email,
+            userId: data.id,
+            firstName: data.first_name,
+            lastName: data.last_name,
+            verified: data.verified
+          };
           sendMail(email);
-          res.send('saved')})
+          res.redirect('/auction');
 
         }).catch(err => {
           console.log(err);
