@@ -1,5 +1,5 @@
 $(function () {
-  var socket = io.connect('http://localhost:8000/');
+  var socket = io.connect('http://localhost:6000/');
   $('.bid-form').submit( () => {
     var bidSubmitted = $('#bid-amount').val();
     console.log(bidSubmitted);

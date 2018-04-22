@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const session = require('express-session');
+// const session = require('express-session');
+const session = require('cookie-session')
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const promise = require('bluebird');
@@ -27,31 +28,34 @@ handlebars.registerHelper("add", function(num1, num2) {
 const exphbs = require('express-handlebars');
 
 // socket.io requires
-const path = require('path');
-const http = require('http');
-const server = http.createServer(app);
-const io = require('socket.io').listen(server);
-server.listen(8000);
+
 // end socket.io requires
 
 const port = process.env.PORT || 3000;
 
+
+const path = require('path');
+const http = require('http');
+const server = http.createServer(app);
+server.listen(6000);
+const io = require('socket.io').listen(server);
+
+
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({ secret: "cats",
-                  resave: true,
-                  saveUninitialized: false,
-                  cookie: {
-                    expires: false, //closing the browser will not log the user out
-                    maxAge: 1 * 24 * 60 * 60 * 1000 //one day
-                  }
+app.use(session({ name: 'session',
+                  secret: "cats",
+                  // resave: true,
+                  // saveUninitialized: false,
+                  expires: false, //closing the browser will not log the user out
+                  maxAge: 1 * 24 * 60 * 60 * 1000 //one day
  }));
 
 // socket.io server
 var clients = 0;
 var bidData;
 // when some client connects:
-var socketServer = io.on('connection', function(socket) {
+io.on('connection', function(socket) {
   clients++; // client counter decreases
   console.log('A client has connected. ' + clients + ' now connected.');
 
@@ -60,7 +64,7 @@ var socketServer = io.on('connection', function(socket) {
     console.log('Incoming bid: ' + bidEvent.bidAmount + ' from ' + bidEvent.userId + ' for lot ' + bidEvent.lotNumber); // submitted bid is transmitted back to server; use content to parse for bidValue, email, lotId to update db (pass to another route js???)
     var bidData = bidEvent;
     console.log('updating bids TABLE with: ' + bidData);
-    
+
     // SQL statement to update bid TABLE
     db.one('INSERT INTO bids VALUES (DEFAULT, $1, NOW(), FALSE, $2, $3) RETURNING *', [bidEvent.bidAmount, bidEvent.userId, bidEvent.lotNumber])
       .then(bidData => {
@@ -69,7 +73,7 @@ var socketServer = io.on('connection', function(socket) {
       .catch(error => {
         console.log('bids TABLE was not updated successfully! ', error);
       });
-    
+
   //when some client disconnects:
     socket.on('disconnect', function() {
       clients--; // client counter decreases
