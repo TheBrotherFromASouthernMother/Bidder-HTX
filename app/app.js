@@ -37,7 +37,7 @@ const port = process.env.PORT || 3000;
 const path = require('path');
 const http = require('http');
 const server = http.createServer(app);
-server.listen(6000);
+server.listen(process.env.PORT);
 const io = require('socket.io').listen(server);
 
 
