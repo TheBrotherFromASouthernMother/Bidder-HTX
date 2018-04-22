@@ -55,7 +55,8 @@ router.post('/register', (req, res) => {
             verified: data.verified
           };
           sendMail(email);
-          res.redirect('/auction');
+          res.redirect('/auction')
+        })
 
         }).catch(err => {
           console.log(err);
