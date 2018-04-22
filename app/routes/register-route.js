@@ -38,7 +38,6 @@ router.post('/register', (req, res) => {
         console.log('username already exists');
         res.send('username already exists')
       }).catch( err => {
-
         //if user is not in database, hash their password and saved their data to database
         bcrypt.hash(password, saltRounds)
         .then( (hash) => {
@@ -54,8 +53,9 @@ router.post('/register', (req, res) => {
             lastName: data.last_name,
             verified: data.verified
           };
+
+          res.redirect('/auction');
           sendMail(email);
-          res.redirect('/auction')
         })
 
         }).catch(err => {
