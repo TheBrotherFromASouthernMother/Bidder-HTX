@@ -2,8 +2,8 @@ const router = require('express').Router();
 
 const bodyParser = require('body-parser');
 
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+// const bcrypt = require('bcrypt');
+// const saltRounds = 10;
 
 const db = require("../app.js").db;
 
