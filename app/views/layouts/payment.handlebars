@@ -3,14 +3,10 @@
         <div class="row">
             <div class="col-lg-6">
                 {{#with userInfo}}
-<<<<<<< HEAD
-                <h5>Hi, {{firstName}}{{/with}}.</h5><p>Are you sure you want to bid <b>${{bid}}</b> on:<br>{{#with artworkInfo}}<b>{{title}}</b> by {{artist}}?{{/with}}</p>
-=======
                 <h5>Hi, {{firstName}}{{/with}}.</h5><p>Are you sure you want to bid <b id="bid-amount" bid-amount="{{bid}}">${{bid}}</b> on:<br>{{#with artworkInfo}}<b>{{title}}</b> by {{artist}}?{{/with}}</p>
                 {{#with artworkInfo}}
                 <span class="lot-number" lot-number="{{lot_number}}"></span>
                 {{/with}}
->>>>>>> 6b840a4... Fixing payment submit posting to auction view
                 <form action="/auction" method="POST">
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"

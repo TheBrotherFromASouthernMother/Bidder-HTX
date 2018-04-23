@@ -38,12 +38,11 @@ const exphbs = require('express-handlebars');
 
 const port = process.env.PORT || 3000;
 
-// console.log(socketPort)
 // const path = require('path');
 // const http = require('http');
 // const server = http.createServer(app);
-// server.listen(socketPort);
 // const io = require('socket.io').listen(server);
+// server.listen(3000);
 
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -55,38 +54,35 @@ app.use(session({ name: 'session',
                   maxAge: 1 * 24 * 60 * 60 * 1000 //one day
  }));
 
-// socket.io server
-// let socketList = [];
-// var clients = 0;
-// var bidData;
-// // when some client connects:
-// io.on('connection', function(socket) {
-//   console.log(socketList)
-//   clients++; // client counter decreases
-//   console.log('A client has connected. ' + clients + ' now connected.');
-//
-//   // listen to incoming bids
-//   var incomingBid = socket.on('bid', function(bidEvent) {
-//     console.log('Incoming bid: ' + bidEvent.bidAmount + ' from ' + bidEvent.userId + ' for lot ' + bidEvent.lotNumber); // submitted bid is transmitted back to server; use content to parse for bidValue, email, lotId to update db (pass to another route js???)
-//     var bidData = bidEvent;
-//     console.log('updating bids TABLE with: ' + bidData);
-//
-//     // SQL statement to update bid TABLE
-//     db.one('INSERT INTO bids VALUES (DEFAULT, $1, NOW(), FALSE, $2, $3) RETURNING *', [bidEvent.bidAmount, bidEvent.userId, bidEvent.lotNumber])
-//       .then(bidData => {
-//         console.log('bids TABLE was updated successfully as id#', bidData.id); // confirm bid data updated to db
-//       })
-//       .catch(error => {
-//         console.log('bids TABLE was not updated successfully! ', error);
-//       });
-//
-//   //when some client disconnects:
-//     socket.on('disconnect', function() {
-//       clients--; // client counter decreases
-//       console.log('A client has disconnected. ' + clients + ' still connected.');
-//     });
-//   });
-// });
+ var clients = 0;
+ var bidData;
+ // when some client connects:
+ // io.on('connection', function(socket) {
+ //   clients++; // client counter decreases
+ //   console.log('A client has connected. ' + clients + ' now connected.');
+ //
+ //   // listen to incoming bids
+ //   var incomingBid = socket.on('bid', function(bidEvent) {
+ //     console.log('Incoming bid: ' + bidEvent.bidAmount + ' from ' + bidEvent.userId + ' for lot ' + bidEvent.lotNumber); // submitted bid is transmitted back to server; use content to parse for bidValue, email, lotId to update db (pass to another route js???)
+ //     var bidData = bidEvent;
+ //     console.log('updating bids TABLE with: ' + bidData);
+ //
+ //     // SQL statement to update bid TABLE
+ //     db.one('INSERT INTO bids VALUES (DEFAULT, $1, NOW(), FALSE, $2, $3) RETURNING *', [bidEvent.bidAmount, bidEvent.userId, bidEvent.lotNumber])
+ //       .then(bidData => {
+ //         console.log('bids TABLE was updated successfully as id#', bidData.id); // confirm bid data updated to db
+ //       })
+ //       .catch(error => {
+ //         console.log('bids TABLE was not updated successfully! ', error);
+ //       });
+ //
+ //   //when some client disconnects:
+ //     socket.on('disconnect', function() {
+ //       clients--; // client counter decreases
+ //       console.log('A client has disconnected. ' + clients + ' still connected.');
+ //     });
+ //   });
+ // });
 
 app.set('views', './views');
 app.engine('handlebars', exphbs());
