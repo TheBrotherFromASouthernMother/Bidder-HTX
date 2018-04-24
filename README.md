@@ -3,10 +3,10 @@ Bidder is a full-stack web application that allows users to bid on local art pie
 the MVC artchectirual scheme, this application is built to ensure ease of use and scalability. 
 
 ## Getting Started
-A live and fully functioning demo of the application can be found on at <a href="https://bidder-houston.herokuapp.com/auction">
+<p>A live and fully functioning deployment of the application can be found on at <a href="https://bidder-houston.herokuapp.com/login">
 here</a>
 
-<p align="center"><a href="https://imgflip.com/gif/28yo57" ><img src="https://i.imgflip.com/28yo57.gif" title="made at imgflip.com"/></a></p>
+<p><a href="https://imgflip.com/gif/28yo57" ><img src="https://i.imgflip.com/28yo57.gif" title="made at imgflip.com"/></a></p>
 <p align="center"> <a href="https://www.dropbox.com/s/j6c6bbujv5ow60x/bidderAppWalkthrough.mov?dl=0" ><h4> Click here to view full video walkthrough </h4></a></p>
 
 
@@ -25,12 +25,12 @@ here</a>
  * Socket.io
 
 
-# Design & Architecure:
+# Roles and Responsibilities:
 
  ## Database Architecture and Design - Erin Thigpen
  In building this app the teams first order was to create a scalable structure for the database. 
  Erin Thigpen took ownership of this process and led the implemntation of the data model from initial planning and visualization all the way to testing and live deployment
- <img src="https://i.imgur.com/nLkmUcY.png">
+ <img src="https://i.imgur.com/nLkmUcY.png" width="60%">
  <img src="https://i.imgur.com/tZFeLC9.png">
  
  
