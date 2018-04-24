@@ -25,7 +25,8 @@ here</a>
  * Socket.io
 
 
-## Design & Architecure 
+# Design & Architecure:
+ <br>
  ## Database Design and Data Modeling - Erin Thigpen
  In building this app the teams first order was to create a scalable structure for the database. 
  Erin Thigpen took ownership of this process and led the implemntation of the data model from initial planning and visualization all the way to testing and live deployment
@@ -41,7 +42,7 @@ here</a>
 ## Interactive Auctions with Socket.io - Andy Tang
 Not satisfied with mediocrity, Andy Tang envisioned a web application that invoked in the user the excited feeling of being at a real life auction house. As such, Andy took responsibility for developing with Socket.io to provide real time updates to the application's auction interface much like real life auctionneer.
 
-## User and Session Implemntation - Christian Lowe
+## User and Session Implementation - Christian Lowe
 In order to maintain legitimate auctions and keep track of buyer actions Christian Lowe took charge of user creation and authentication. By implmenting a flow of registration, email verification, and session creation, the application's user functionality makes the process of acessing bid information and payment options simple, secure, and enjoyable.
 
 ## Roles and Responsibilities:
