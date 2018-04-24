@@ -30,7 +30,7 @@ here</a>
  ## Database Architecture and Design - Erin Thigpen
  In building this app the teams first order was to create a scalable structure for the database. 
  Erin Thigpen took ownership of this process and led the implemntation of the data model from initial planning and visualization all the way to testing and live deployment
- <img src="https://i.imgur.com/nLkmUcY.png" width="60%">
+ <img src="https://i.imgur.com/nLkmUcY.png" width="60%" align="left">
  <img src="https://i.imgur.com/tZFeLC9.png" width="60%" align="center">
  
  
