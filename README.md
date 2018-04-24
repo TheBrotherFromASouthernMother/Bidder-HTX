@@ -3,7 +3,7 @@ Bidder is a full-stack web application that allows users to bid on local art pie
 the MVC artchectirual scheme, this application is built to ensure ease of use and scalability. 
 
 ## Getting Started
-A live and fully functioning demo of the application can be found on at <a href=""https://bidder-houston.herokuapp.com/auction>
+A live and fully functioning demo of the application can be found on at <a href="https://bidder-houston.herokuapp.com/auction">
 here</a>
 
 <a href="https://imgflip.com/gif/28yo57" align="center"><img src="https://i.imgflip.com/28yo57.gif" title="made at imgflip.com"/></a>
