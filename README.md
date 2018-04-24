@@ -6,8 +6,8 @@ the MVC artchectirual scheme, this application is built to ensure ease of use an
 A live and fully functioning demo of the application can be found on at <a href="https://bidder-houston.herokuapp.com/auction">
 here</a>
 
-<a href="https://imgflip.com/gif/28yo57" align="center"><img src="https://i.imgflip.com/28yo57.gif" title="made at imgflip.com"/></a>
-<a href="https://www.dropbox.com/s/j6c6bbujv5ow60x/bidderAppWalkthrough.mov?dl=0" align="center"><h4> Click here to view full video walkthrough </h4></a>
+<p align="center"><a href="https://imgflip.com/gif/28yo57" ><img src="https://i.imgflip.com/28yo57.gif" title="made at imgflip.com"/></a></p>
+<p align="center"> <a href="https://www.dropbox.com/s/j6c6bbujv5ow60x/bidderAppWalkthrough.mov?dl=0" ><h4> Click here to view full video walkthrough </h4></a></p>
 
 
 ## Key Technologies
@@ -42,7 +42,7 @@ here</a>
 Not satisfied with mediocrity, Andy Tang envisioned a web application that invoked in the user the excited feeling of being at a real life auction house. As such, Andy took responsibility for developing with Socket.io to provide real time updates to the application's auction interface much like real life auctionneer.
 
 ### User and Session Implemntation 
-
+In order to maintain legitimate auctions and keep track of buyer actions Christian Lowe took charge of user creation and authentication. By implmenting a flow of registration, email verification, and session creation, the application's user functionality makes the process of acessing bid information and payment options simple, secure, and enjoyable.
 
 ## Roles and Responsibilities:
 * Erin Thigpen - Database Architecture and Design
