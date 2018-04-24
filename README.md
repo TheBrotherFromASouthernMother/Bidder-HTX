@@ -26,22 +26,22 @@ here</a>
 
 
 ## Design & Architecure 
- ### Database Design and Data Modeling
+ ## Database Design and Data Modeling - Erin Thigpen
  In building this app the teams first order was to create a scalable structure for the database. 
  Erin Thigpen took ownership of this process and led the implemntation of the data model from initial planning and visualization all the way to testing and live deployment
  <img src="https://i.imgur.com/nLkmUcY.png">
  <img src="https://i.imgur.com/tZFeLC9.png">
  
- ### Stripe API Integration and Bid Processing
+ ## Stripe API Integration and Bid Processing - Kristen Baldwin
  After creating a working database structure our team split to take on specific areas of responsibility. 
  Kristen Baldwin took the lead on creating the interface between our application and the Stripe API in order to allow our users to easily, and most importantly, safely submit bids and make payments for their selected art piece.
  <img src="https://i.imgur.com/bar5JZO.png">
  <img src="https://i.imgur.com/hwpyb78.png">
 
-### Interactive Auctions with Socket.io 
+## Interactive Auctions with Socket.io - Andy Tang
 Not satisfied with mediocrity, Andy Tang envisioned a web application that invoked in the user the excited feeling of being at a real life auction house. As such, Andy took responsibility for developing with Socket.io to provide real time updates to the application's auction interface much like real life auctionneer.
 
-### User and Session Implemntation 
+## User and Session Implemntation - Christian Lowe
 In order to maintain legitimate auctions and keep track of buyer actions Christian Lowe took charge of user creation and authentication. By implmenting a flow of registration, email verification, and session creation, the application's user functionality makes the process of acessing bid information and payment options simple, secure, and enjoyable.
 
 ## Roles and Responsibilities:
