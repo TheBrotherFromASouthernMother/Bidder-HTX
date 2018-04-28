@@ -32,7 +32,7 @@ router.post('/verification', (req, res) => {
       }
       db.any('UPDATE users SET verified = TRUE WHERE email = $1', [email])
       .then( ()=> {
-        res.send('user has been verified');
+        res.render('layouts/thankYou')
         return;
       }).catch( err => {
         console.log(err);
