@@ -102,6 +102,10 @@ nav {
     bottom: 0;
 }
 
+.logout {
+    text-align: center;
+}
+
 @media (min-width: 576px) {
     .lot-description {
         max-width: 500px;
