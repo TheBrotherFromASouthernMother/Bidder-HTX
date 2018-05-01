@@ -3,7 +3,7 @@ Bidder is a full-stack web application that allows users to bid on local art pie
 the MVC artchectirual scheme, this application is built to ensure ease of use and scalability. 
 
 ## Getting Started
-<p>A live and fully functioning deployment of the application can be found on at <a href="https://bidder-houston.herokuapp.com/login">
+<p>A live and fully functioning deployment of the application can be found here <a href="https://bidder-houston.herokuapp.com/login">
 here</a>
 
 <p><a href="https://imgflip.com/gif/28yo57" ><img src="https://i.imgflip.com/28yo57.gif" title="made at imgflip.com"/></a></p>
@@ -28,7 +28,7 @@ here</a>
 # Roles and Responsibilities:
 
  ## Database Architecture and Design - Erin Thigpen
- In building this app the teams first order was to create a scalable structure for the database. 
+ In building this app the team's first order was to create a scalable structure for the database. 
  Erin Thigpen took ownership of this process and led the implemntation of the data model from initial planning and visualization all the way to testing and live deployment.  
  
  <img src="https://i.imgur.com/nLkmUcY.png" width="60%" align="left">
