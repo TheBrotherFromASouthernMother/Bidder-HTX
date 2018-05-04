@@ -3,7 +3,7 @@ Bidder is a full-stack web application that allows users to bid on local art pie
 the MVC artchectirual scheme, this application is built to ensure ease of use and scalability. 
 
 ## Getting Started
-<p>A live and fully functioning deployment of the application can be found here <a href="https://bidder-houston.herokuapp.com/login">
+<p>A live and fully functioning deployment of the application can be found <a href="https://bidder-houston.herokuapp.com/login">
 here</a>
 
 <p><a href="https://imgflip.com/gif/28yo57" ><img src="https://i.imgflip.com/28yo57.gif" title="made at imgflip.com"/></a></p>
@@ -42,7 +42,7 @@ here</a>
  <img src="https://i.imgur.com/bar5JZO.png" width="60%" align="center">
  <img src="https://i.imgur.com/hwpyb78.png" width="60%" align="center">
 
-## User Creation, Authentication, and Verification- Christian Lowe
+## User Creation, Authentication, and Verification - Christian Lowe
 In order to maintain legitimate auctions and keep track of buyer actions Christian Lowe took charge of user creation and authentication. By implmenting a flow of registration, email verification, and session creation, the application's user functionality makes the process of acessing bid information and payment options simple, secure, and enjoyable.
 
 <img src="https://i.imgur.com/CTtX3lh.png" width="60%" align="center">
